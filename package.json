@@ -1,0 +1,9 @@
+{
+  "name": "wgd-open-jam",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Trezy <hello@trezy.studio> (https://trezy.studio)",
+  "contributors": [],
+  "license": "BSD-3-Clause",
+  "private": true
+}
