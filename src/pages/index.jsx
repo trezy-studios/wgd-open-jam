@@ -1,8 +1,3 @@
-/**
- * @component
- */
-export function HomePage() {
-	return (
-		<div>{'Hello world!'}</div>
-	)
-}
+import { HomePage } from '../components/HomePage/HomePage.jsx'
+
+export default HomePage
