@@ -1,0 +1,16 @@
+.DS_Store
+.next
+.env
+.env.build
+.env.local
+yarn-error.log
+.vercel/
+node_modules/
+
+.yarn/*
+!.yarn/cache
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
