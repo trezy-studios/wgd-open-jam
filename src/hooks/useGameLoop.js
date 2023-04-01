@@ -3,7 +3,7 @@ import {
 	schedule,
 	unschedule,
 } from 'rafael'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 
 
 
@@ -16,8 +16,11 @@ import { gameLoop } from '../game/gameLoop.js'
 
 
 
+/**
+ * Schedules the game loop to run on mount and unschedules it on unmount.
+ */
 export function useGameLoop() {
-	useEffect(() => {
+	useLayoutEffect(() => {
 		schedule(gameLoop, { id: 'game loop' })
 
 		return () => unschedule('game loop')

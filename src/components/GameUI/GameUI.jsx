@@ -12,8 +12,6 @@ import styles from './GameUI.module.scss'
  */
 export function GameUI() {
 	return (
-		<div className={styles['game-ui-wrapper']}>
-
-		</div>
+		<div className={styles['game-ui-wrapper']} />
 	)
 }

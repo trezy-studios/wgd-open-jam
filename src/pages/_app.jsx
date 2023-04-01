@@ -1,3 +1,10 @@
+// Module imports
+import PropTypes from 'prop-types'
+
+
+
+
+
 // Local imports
 import '../scss/reset.scss'
 import '../scss/app.scss'
@@ -6,6 +13,19 @@ import '../scss/app.scss'
 
 
 
-export default function App({ Component, pageProps }) {
+/**
+ * @component
+ */
+export default function App(props) {
+  const {
+    Component,
+    pageProps,
+  } = props
+
   return <Component {...pageProps} />
+}
+
+App.propTypes = {
+  Component: PropTypes.node.isRequired,
+  pageProps: PropTypes.object.isRequired,
 }

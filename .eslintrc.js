@@ -167,6 +167,9 @@ module.exports = {
 				MethodDefinition: true,
 			},
 		}],
+		'jsdoc/require-param': ['error', {
+			exemptedBy: ['component'],
+		}],
 		'jsdoc/require-returns': ['error', {
 			exemptedBy: ['component'],
 		}],
