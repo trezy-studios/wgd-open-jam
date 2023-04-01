@@ -1,13 +1,10 @@
-// Module imports
-import { Application } from 'pixi.js'
-import { World } from 'miniplex'
-
-
-
-
-
 // Local imports
-import { createPlayerEntity } from './entities/createPlayerEntity.js'
+import { cameraSystem } from './systems/cameraSystem.js'
+import { controllerSystem } from './systems/controllerSystem.js'
+import { initialisationSystem } from './systems/initialisationSystem.js'
+import { moveSystem } from './systems/MoveSystem.js'
+import { renderSystem } from './systems/renderSystem.js'
+import { sortSystem } from './systems/sortSystem.js'
 import { store } from '../store/store.js'
 
 
@@ -22,30 +19,16 @@ import { store } from '../store/store.js'
 export function gameLoop() {
 	const { isPaused } = store.state
 
-	let {
-		pixiApp,
-		player,
-		world,
-	} = store.state
-
 	if (isPaused) {
 		return true
 	}
 
-	if (!pixiApp) {
-		pixiApp = new Application
-		store.set(() => ({ pixiApp }))
-	}
-
-	if (!world) {
-		world = new World
-		store.set(() => ({ world }))
-	}
-
-	if (!player) {
-		player = createPlayerEntity()
-		store.set(() => ({ player }))
-	}
+	initialisationSystem()
+	controllerSystem()
+	moveSystem()
+	sortSystem()
+	cameraSystem()
+	renderSystem()
 
 	return true
 }

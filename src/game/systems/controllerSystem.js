@@ -1,5 +1,5 @@
 // Local imports
-import { getPlayers } from '../selectors.js'
+import { getPlayers } from '../entities/selectors/getPlayers.js'
 import { store } from '../../store/store.js'
 
 

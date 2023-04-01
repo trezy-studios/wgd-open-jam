@@ -1,5 +1,5 @@
 // Local imports
-import { getMovingEntities } from '../selectors.js'
+import { getMovingEntities } from '../entities/selectors/getMovingEntities.js'
 
 
 

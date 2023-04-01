@@ -1,8 +1,6 @@
 // Local imports
-import {
-	getCameras,
-	getPlayers,
-} from '../selectors.js'
+import { getCameras } from '../entities/selectors/getCameras.js'
+import { getPlayers } from '../entities/selectors/getPlayers.js'
 import { store } from '../../store/store.js'
 
 

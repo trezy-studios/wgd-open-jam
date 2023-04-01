@@ -1,5 +1,5 @@
 // Local imports
-import { getRenderableEntities } from '../selectors.js'
+import { getRenderableEntities } from '../entities/selectors/getRenderableEntities.js'
 import { quicksort } from '../../helpers/quicksort.js'
 import { store } from '../../store/store.js'
 

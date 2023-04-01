@@ -334,6 +334,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hmans/controlfreak@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@hmans/controlfreak@npm:0.2.0"
+  dependencies:
+    "@hmans/signal": ^0.1.8
+  checksum: 1079452ef056cba89dc0e10a6a4978bbd008fd35763a8dfe70f8907217ab8adcdff96450d709f5d2ae0dd42020c96a9ebabfcdd34edab877d0589fd6235d967d
+  languageName: node
+  linkType: hard
+
 "@hmans/event@npm:^0.2.0":
   version: 0.2.0
   resolution: "@hmans/event@npm:0.2.0"
@@ -345,6 +354,13 @@ __metadata:
   version: 0.0.1
   resolution: "@hmans/queue@npm:0.0.1"
   checksum: d8622136c4afa160567c5ea37f5dcb6b2c1a29f3574f56ea12affa4f6fd05ffd0894c6c677c0a69bd2028df798ef60db2789dcb268e063f0233a4ec4dd7d8d7f
+  languageName: node
+  linkType: hard
+
+"@hmans/signal@npm:^0.1.8":
+  version: 0.1.8
+  resolution: "@hmans/signal@npm:0.1.8"
+  checksum: ac25ef693711b35cbb645cd6ed66615657532a11e9e68050fdbdaa57ffff7303518f9e92e8f4e379a5ab385c04e7a37f6e900f81d5b238023f40de7abbc46898
   languageName: node
   linkType: hard
 
@@ -5171,6 +5187,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"uuid@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "uuid@npm:9.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
+  languageName: node
+  linkType: hard
+
 "v8-to-istanbul@npm:^9.0.0":
   version: 9.1.0
   resolution: "v8-to-istanbul@npm:9.1.0"
@@ -5230,6 +5255,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "wgd-open-jam@workspace:."
   dependencies:
+    "@hmans/controlfreak": ^0.2.0
     "@next/eslint-plugin-next": ^13.2.4
     "@types/react": ^18.0.31
     better-docs: ^2.7.2
@@ -5257,6 +5283,7 @@ __metadata:
     react-dom: ^18.2.0
     sass: ^1.60.0
     statery: ^0.6.3
+    uuid: ^9.0.0
   languageName: unknown
   linkType: soft
 
