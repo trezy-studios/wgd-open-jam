@@ -1,5 +1,4 @@
 // Module imports
-import { Application } from 'pixi.js'
 import { createController } from '../../helpers/createController.js'
 import { World } from 'miniplex'
 
@@ -19,17 +18,12 @@ import { store } from '../../store/store.js'
 export function initialisationSystem() {
 	const {
 		controller,
-		pixiApp,
 		player,
 		world,
 	} = store.state
 
 	if (!controller) {
 		store.set(() => ({ controller: createController() }))
-	}
-
-	if (!pixiApp) {
-		store.set(() => ({ pixiApp: new Application }))
 	}
 
 	if (!world) {

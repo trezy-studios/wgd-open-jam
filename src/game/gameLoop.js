@@ -2,7 +2,7 @@
 import { cameraSystem } from './systems/cameraSystem.js'
 import { controllerSystem } from './systems/controllerSystem.js'
 import { initialisationSystem } from './systems/initialisationSystem.js'
-import { moveSystem } from './systems/MoveSystem.js'
+import { moveSystem } from './systems/moveSystem.js'
 import { renderSystem } from './systems/renderSystem.js'
 import { sortSystem } from './systems/sortSystem.js'
 import { store } from '../store/store.js'

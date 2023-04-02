@@ -26,20 +26,30 @@ import { useGameLoop } from '../../hooks/useGameLoop.js'
  * @component
  */
 export function GamePage() {
-	const { pixiApp } = useStore(store)
+	const {
+		areAssetsLoaded,
+		pixiApp,
+	} = useStore(store)
 
 	const gameWrapperRef = useRef(null)
 
 	useGameLoop()
 
 	useEffect(() => {
+		if (!areAssetsLoaded) {
+			return
+		}
+
 		const gameWrapper = gameWrapperRef.current
 
-		if (gameWrapper && pixiApp) {
-			gameWrapper.appendChild(pixiApp.view)
-			pixiApp.resizeTo = gameWrapper
+		if (!gameWrapper || !pixiApp) {
+			return
 		}
+
+		gameWrapper.appendChild(pixiApp.view)
+		pixiApp.resizeTo = gameWrapper
 	}, [
+		areAssetsLoaded,
 		gameWrapperRef,
 		pixiApp,
 	])

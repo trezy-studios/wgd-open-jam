@@ -1,6 +1,6 @@
 // Local imports
 import { createActorEntity } from './createActorEntity.js'
-import { store } from '../../store/store.js'
+import { spriteComponent } from '../components/spriteComponent.js'
 
 
 
@@ -12,15 +12,14 @@ import { store } from '../../store/store.js'
  * @returns {object} The new entity.
  */
 export function createPlayerEntity() {
-	const { world } = store.state
+	const player = createActorEntity({
+		isPlayer: true,
+		...spriteComponent('player-spritesheet', 'idle-south'),
+	})
 
-	const player = createActorEntity()
-
-	player.size.height = 10
-	player.size.width = 10
-	player.velocity.speed = 2
-
-	world.addComponent(player, 'isPlayer', true)
+	player.size.height = player.sprite.sprite.height
+	player.size.width = player.sprite.sprite.width
+	player.velocity.speed = 1
 
 	return player
 }

@@ -1,19 +1,29 @@
+// Module imports
 import {
-  // BooleanControl,
-  Controller,
-  GamepadDevice,
-  KeyboardDevice,
-  processors,
-  TouchDevice,
-  VectorControl
+	// BooleanControl,
+	Controller,
+	GamepadDevice,
+	KeyboardDevice,
+	processors,
+	TouchDevice,
+	VectorControl,
 } from '@hmans/controlfreak'
 
-export function createController() {
-	const controller = new Controller()
 
-	const keyboard = new KeyboardDevice()
-	const gamepad = new GamepadDevice()
-	const touch = new TouchDevice()
+
+
+
+/**
+ * Creates a controller manager.
+ *
+ * @returns {Controller} The new controller manager.
+ */
+export function createController() {
+	const controller = new Controller
+
+	const keyboard = new KeyboardDevice
+	const gamepad = new GamepadDevice
+	const touch = new TouchDevice
 
 	controller.addDevice(keyboard)
 	controller.addDevice(gamepad)

@@ -13,9 +13,10 @@ import { velocity } from '../components/velocity.js'
 /**
  * Creates a new entity representing an actor.
  *
+ * @param {object} components Additional components to be attached to the created entity.
  * @returns {object} The new entity.
  */
-export function createActorEntity() {
+export function createActorEntity(components = {}) {
 	const { world } = store.state
 
 	const actor = world.add({
@@ -24,6 +25,7 @@ export function createActorEntity() {
 		...position(),
 		...size(),
 		...velocity(),
+		...components,
 	})
 
 	return actor
