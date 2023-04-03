@@ -19,7 +19,7 @@ export function createPlayerEntity() {
 
 	player.size.height = player.sprite.sprite.height
 	player.size.width = player.sprite.sprite.width
-	player.velocity.speed = 1
+	player.velocity.speed = 0.4
 
 	return player
 }
