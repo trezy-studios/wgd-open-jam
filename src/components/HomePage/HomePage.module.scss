@@ -1,1 +1,13 @@
-.home-page {}
+.home-page {
+	> *:not(:last-child) {
+		margin-bottom: calc(var(--ui-scale) * 4px);
+	}
+}
+
+.hero {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	min-height: 90vh;
+	width: 100%;
+}

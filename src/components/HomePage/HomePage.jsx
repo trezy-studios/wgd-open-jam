@@ -7,15 +7,13 @@ import { Page } from '../Page/Page.jsx'
 
 
 
-/**
- * @component
- */
+/** @component */
 export function HomePage() {
 	return (
 		<Page className={styles['home-page']}>
-			<p>
+			<div className={styles['hero']}>
 				{'Hello world!'}
-			</p>
+			</div>
 		</Page>
 	)
 }

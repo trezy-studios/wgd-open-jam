@@ -8,12 +8,13 @@
 
 
 :root {
-	--ui-scale: 5;
+	--ui-scale: 2;
 }
 
 * {
 	box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
+	image-rendering: pixelated;
 	text-overflow: ellipsis;
 	text-rendering: optimizeLegibility;
 

@@ -9,6 +9,8 @@ import PropTypes from 'prop-types'
 import '../scss/reset.scss'
 import '../scss/app.scss'
 
+import { Banner } from '../components/Banner/Banner.jsx'
+
 
 
 
@@ -17,15 +19,20 @@ import '../scss/app.scss'
  * @component
  */
 export default function App(props) {
-  const {
-    Component,
-    pageProps,
-  } = props
+	const {
+		Component,
+		pageProps,
+	} = props
 
-  return <Component {...pageProps} />
+	return (
+		<>
+			<Banner />
+			<Component {...pageProps} />
+		</>
+	)
 }
 
 App.propTypes = {
-  Component: PropTypes.any.isRequired,
-  pageProps: PropTypes.object.isRequired,
+	Component: PropTypes.any.isRequired,
+	pageProps: PropTypes.object.isRequired,
 }
