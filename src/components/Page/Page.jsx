@@ -10,6 +10,8 @@ import { useMemo } from 'react'
 // Local imports
 import styles from './Page.module.scss'
 
+import { Banner } from '../Banner/Banner.jsx'
+
 
 
 
@@ -30,9 +32,13 @@ export function Page(props) {
 	}, [className])
 
 	return (
-		<div className={compiledClassName}>
-			{children}
-		</div>
+		<>
+			<Banner />
+
+			<div className={compiledClassName}>
+				{children}
+			</div>
+		</>
 	)
 }
 

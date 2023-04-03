@@ -9,8 +9,6 @@ import PropTypes from 'prop-types'
 import '../scss/reset.scss'
 import '../scss/app.scss'
 
-import { Banner } from '../components/Banner/Banner.jsx'
-
 
 
 
@@ -25,10 +23,7 @@ export default function App(props) {
 	} = props
 
 	return (
-		<>
-			<Banner />
-			<Component {...pageProps} />
-		</>
+		<Component {...pageProps} />
 	)
 }
 
