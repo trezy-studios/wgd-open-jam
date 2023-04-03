@@ -64,6 +64,7 @@ export function spriteComponent(spritesheetName, defaultAnimationName) {
 		sprite.play()
 
 		if (state.sprite) {
+			state.sprite.gotoAndStop(0)
 			pixiApp.stage.removeChild(state.sprite)
 		}
 
