@@ -4041,6 +4041,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pixi-viewport@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "pixi-viewport@npm:5.0.1"
+  checksum: 2eebb5615a3c8f5e0ce63accb18fd5cf4500ca0677102acc2c19690b295da3d95557f062c9c74ef9557b3db71d842037998f8b21aa7888f315165b7a2cce3b6c
+  languageName: node
+  linkType: hard
+
 "pixi.js@npm:^7.2.3":
   version: 7.2.3
   resolution: "pixi.js@npm:7.2.3"
@@ -5276,6 +5283,7 @@ __metadata:
     framer-motion: ^10.10.0
     miniplex: ^2.0.0-next.20
     next: ^13.2.4
+    pixi-viewport: ^5.0.1
     pixi.js: ^7.2.3
     prop-types: ^15.8.1
     rafael: ^5.0.2

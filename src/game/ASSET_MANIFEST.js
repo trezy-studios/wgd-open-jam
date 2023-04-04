@@ -7,6 +7,10 @@ export const ASSET_MANIFEST = {
 					name: 'player-spritesheet',
 					srcs: '/sprites/player-character/human/spritesheet.json',
 				},
+				{
+					name: 'grass',
+					srcs: '/sprites/world/grass.png',
+				},
 			],
 		},
 	],

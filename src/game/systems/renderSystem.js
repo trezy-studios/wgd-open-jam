@@ -14,7 +14,7 @@ import { store } from '../../store/store.js'
 export function renderSystem() {
 	const {
 		// entityRenderOrder,
-		pixiApp,
+		viewport,
 	} = store.state
 
 	// prepareCanvas()
@@ -25,7 +25,7 @@ export function renderSystem() {
 
 	for (const entity of renderableEntitites) {
 		if (!entity.sprite.isStaged) {
-			pixiApp.stage.addChild(entity.sprite.sprite)
+			viewport.addChild(entity.sprite.sprite)
 			entity.sprite.isStaged = true
 		}
 

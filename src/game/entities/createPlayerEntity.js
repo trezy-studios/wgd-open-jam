@@ -1,6 +1,7 @@
 // Local imports
 import { createActorEntity } from './createActorEntity.js'
 import { spriteComponent } from '../components/spriteComponent.js'
+import { store } from '../../store/store.js'
 
 
 
@@ -12,9 +13,20 @@ import { spriteComponent } from '../components/spriteComponent.js'
  * @returns {object} The new entity.
  */
 export function createPlayerEntity() {
+	const { viewport } = store.state
+
 	const player = createActorEntity({
 		isPlayer: true,
-		...spriteComponent('player-spritesheet', 'idle-south'),
+		...spriteComponent({
+			defaultAnimationName: 'idle-south',
+			onChange: (oldSprite, newSprite) => {
+				viewport.follow(newSprite, {
+					radius: 50,
+					speed: 50,
+				})
+			},
+			spritesheetName: 'player-spritesheet',
+		}),
 	})
 
 	player.size.height = player.sprite.sprite.height

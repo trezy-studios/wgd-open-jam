@@ -11,6 +11,8 @@ import { store } from '../../store/store.js'
 export function cameraSystem() {
 	const { canvas } = store.state
 
+	return
+
 	for (const camera of getCameras()) {
 		camera.size.height = canvas.height
 		camera.size.width = canvas.width

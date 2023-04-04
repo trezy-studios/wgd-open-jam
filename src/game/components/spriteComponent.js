@@ -31,7 +31,13 @@ import { store } from '../../store/store.js'
  * @param {string} defaultAnimationName The default animation.
  * @returns {SpriteState} The entity's sprite state.
  */
-export function spriteComponent(spritesheetName, defaultAnimationName) {
+export function spriteComponent(options) {
+	const {
+		defaultAnimationName,
+		onChange,
+		spritesheetName,
+	} = options
+
 	const state = {
 		isAnimated: true,
 		isStaged: true,
@@ -47,7 +53,7 @@ export function spriteComponent(spritesheetName, defaultAnimationName) {
 	 * @returns {boolean} Whether the animation was updated successfully.
 	 */
 	state.setAnimation = animationName => {
-		const { pixiApp } = store.state
+		const { viewport } = store.state
 
 		if (!spriteCache[animationName]) {
 			const spritesheet = Assets.get(spritesheetName)
@@ -65,10 +71,12 @@ export function spriteComponent(spritesheetName, defaultAnimationName) {
 
 		if (state.sprite) {
 			state.sprite.gotoAndStop(0)
-			pixiApp.stage.removeChild(state.sprite)
+			viewport.removeChild(state.sprite)
 		}
 
-		pixiApp.stage.addChild(sprite)
+		viewport.addChild(sprite)
+
+		onChange(state.sprite, sprite)
 
 		state.sprite = sprite
 
