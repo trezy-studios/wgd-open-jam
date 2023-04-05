@@ -11,6 +11,10 @@ export const ASSET_MANIFEST = {
 					name: 'grass',
 					srcs: '/sprites/world/grass.png',
 				},
+				{
+					name: 'metropolis',
+					srcs: '/maps/metropolis.tmx',
+				},
 			],
 		},
 	],

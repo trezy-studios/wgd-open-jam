@@ -2,6 +2,7 @@
 import {
 	Application,
 	BaseTexture,
+	extensions,
 	SCALE_MODES,
 	settings,
 } from 'pixi.js'
@@ -12,6 +13,8 @@ import {
 
 // Local imports
 import { store } from '../store/store.js'
+import { TMXLoader } from '../pixi-tmx-loader/TMXLoader.js'
+import { TSXLoader } from '../pixi-tmx-loader/TSXLoader.js'
 
 
 
@@ -28,6 +31,9 @@ export function setupPixi() {
 		settings.TEXTILE_UNITS = 4
 		settings.TEXTURES_PER_TILEMAP = 4
 		settings.use32bitIndex = true
+
+		extensions.add(TMXLoader)
+		extensions.add(TSXLoader)
 
 		// Create the Pixi app.
 		pixiApp = new Application({
