@@ -9,6 +9,7 @@ import { World } from 'miniplex'
 import { createCameraEntity } from '../entities/createCameraEntity.js'
 import { createController } from '../../helpers/createController.js'
 import { createPlayerEntity } from '../entities/createPlayerEntity.js'
+import { initialiseMap } from '../../helpers/initialiseMap.js'
 import { store } from '../../store/store.js'
 
 
@@ -20,6 +21,7 @@ export function initialisationSystem() {
 	const {
 		camera,
 		controller,
+		map,
 		player,
 		world,
 	} = store.state
@@ -34,6 +36,10 @@ export function initialisationSystem() {
 
 	if (!camera) {
 		store.set(() => ({ camera: createCameraEntity() }))
+	}
+
+	if (!map) {
+		initialiseMap()
 	}
 
 	if (!player) {

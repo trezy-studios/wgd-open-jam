@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@hmans/controlfreak": "^0.2.0",
+    "@pixi/tilemap": "^4.0.0",
     "classnames": "^2.3.2",
     "framer-motion": "^10.10.0",
     "miniplex": "^2.0.0-next.20",

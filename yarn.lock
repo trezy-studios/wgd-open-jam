@@ -1026,6 +1026,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pixi/tilemap@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@pixi/tilemap@npm:4.0.0"
+  checksum: 1a62396414f76800f8f2e8bb207a762c19ad45bcd206e5e53bc2876ebb3f2d5d5f54fda9470773c88c2ee317b18824c69a4ccf7d43a59bd1933a231d8eada6db
+  languageName: node
+  linkType: hard
+
 "@pixi/utils@npm:7.2.3":
   version: 7.2.3
   resolution: "@pixi/utils@npm:7.2.3"
@@ -5264,6 +5271,7 @@ __metadata:
   dependencies:
     "@hmans/controlfreak": ^0.2.0
     "@next/eslint-plugin-next": ^13.2.4
+    "@pixi/tilemap": ^4.0.0
     "@types/react": ^18.0.31
     better-docs: ^2.7.2
     classnames: ^2.3.2
