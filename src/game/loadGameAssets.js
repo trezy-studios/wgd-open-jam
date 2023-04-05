@@ -1,10 +1,5 @@
 // Module imports
-import {
-	Application,
-	Assets,
-	BaseTexture,
-	SCALE_MODES,
-} from 'pixi.js'
+import { Assets } from 'pixi.js'
 
 
 
@@ -26,28 +21,6 @@ export async function loadGameAssets() {
 
 	let { pixiApp } = store.state
 
-	if (!pixiApp) {
-		BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST
-		pixiApp = new Application({
-			antialias: false,
-			autoDensity: true,
-			resolution: window.devicePixelRatio || 1,
-		})
-		pixiApp.stage.setTransform(
-			0,
-			0,
-			4,
-			4,
-			0,
-			0,
-			0,
-			0,
-			0,
-		)
-
-		store.set(() => ({ pixiApp }))
-	}
-
 	const bundleNames = ASSET_MANIFEST.bundles.map(bundle => bundle.name)
 
 	store.set(() => ({ isInitialising: true }))
@@ -61,18 +34,19 @@ export async function loadGameAssets() {
 
 	let bundleIndex = 0
 
-	// eslint-disable-next-line jsdoc/require-returns
 	/**
 	 * Updates the global asset loading progress state.
 	 *
 	 * @param {number} progress The progress of the current bundle.
 	 */
-	const handleProgress = progress => store.set(() => {
-		const cumulativeProgress = bundleIndex + progress
-		const totalProgress = cumulativeProgress / bundleNames.length
+	const handleProgress = progress => {
+		store.set(() => {
+			const cumulativeProgress = bundleIndex + progress
+			const totalProgress = cumulativeProgress / bundleNames.length
 
-		return { assetLoadingProgress: totalProgress }
-	})
+			return { assetLoadingProgress: totalProgress }
+		})
+	}
 
 	while (bundleIndex < bundleNames.length) {
 		const bundleName = bundleNames[bundleIndex]
