@@ -17,7 +17,11 @@ import { store } from '../store/store.js'
  * @returns {boolean} Whether the loop executed successfully.
  */
 export function gameLoop() {
-	const { isPaused } = store.state
+	const {
+		isPaused,
+		physicsWorld,
+		physicsEvents,
+	} = store.state
 
 	if (isPaused) {
 		return true
@@ -29,6 +33,16 @@ export function gameLoop() {
 	sortSystem()
 	cameraSystem()
 	renderSystem()
+
+	physicsWorld.step(physicsEvents)
+
+	physicsEvents.drainContactForceEvents(evt => {
+		console.log('Contact Event', evt)
+	})
+
+	physicsEvents.drainCollisionEvents((collider1, collider2, started) => {
+		console.log('Collision Event', collider1, collider2, started)
+	})
 
 	return true
 }

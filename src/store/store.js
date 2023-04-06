@@ -44,4 +44,10 @@ export const store = makeStore({
 
 	/** @type {import('miniplex').World} */
 	world: null,
+
+	/** @type {import('@dimforge/rapier2d-compat').World} */
+	physicsWorld: null,
+
+	/** @type {import('@dimforge/rapier2d-compat').EventQueue} */
+	physicsEvents: null,
 })

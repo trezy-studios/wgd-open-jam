@@ -13,6 +13,7 @@ import { useStore } from 'statery'
 // Local imports
 import { gameLoop } from '../game/gameLoop.js'
 import { loadGameAssets } from '../game/loadGameAssets.js'
+import { loadRapier } from '../game/loadRapier.js'
 import { setupPixi } from '../game/setupPixi.js'
 import { store } from '../store/store.js'
 
@@ -27,6 +28,7 @@ export function useGameLoop() {
 	const {
 		areAssetsLoaded,
 		pixiApp,
+		physicsWorld,
 	} = useStore(store)
 
 	useLayoutEffect(() => {
@@ -34,6 +36,8 @@ export function useGameLoop() {
 			setupPixi()
 		} else if (!areAssetsLoaded) {
 			loadGameAssets()
+		} else if (!physicsWorld) {
+			loadRapier()
 		} else {
 			schedule(gameLoop, { id: 'game loop' })
 
@@ -42,5 +46,6 @@ export function useGameLoop() {
 	}, [
 		areAssetsLoaded,
 		pixiApp,
+		physicsWorld,
 	])
 }
