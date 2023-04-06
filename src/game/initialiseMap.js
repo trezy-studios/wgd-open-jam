@@ -31,7 +31,7 @@ export function initialiseMap() {
 				return
 			}
 
-			let tileOptions = {}
+			const tileOptions = {}
 
 			layerTilemap.tile(tile.texture, tile.x, tile.y, tileOptions)
 		})
