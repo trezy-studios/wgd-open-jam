@@ -30,7 +30,7 @@ export const store = makeStore({
 	/** @type {boolean} */
 	isUploadingAssetsToGPU: false,
 
-	/** @type {import('pixi.js').TilingSprite} */
+	/** @type {import('@pixi/tilemap').CompositeTilemap[]} */
 	map: null,
 
 	/** @type {object} */

@@ -19,11 +19,27 @@ import { store } from '../store/store.js'
 export function initialiseMap() {
 	const { viewport } = store.state
 
-	const map = new CompositeTilemap
+	const map = []
 
-	map.tile(Assets.get('grass'), 0, 0)
+	const mapData = Assets.get('metropolis')
 
-	viewport.addChild(map)
+	mapData.layers.forEach(layer => {
+		const layerTilemap = new CompositeTilemap
+
+		layer.forEach(tile => {
+			if (!tile) {
+				return
+			}
+
+			const tileOptions = {}
+
+			layerTilemap.tile(tile.texture, tile.x, tile.y, tileOptions)
+		})
+
+		map.push(layerTilemap)
+
+		viewport.addChild(layerTilemap)
+	})
 
 	store.set(() => ({ map }))
 }

@@ -110,7 +110,9 @@ export const TMXLoader = {
 					.trim()
 					.split(',')
 
-				return tileGIDs.map((tileGID, index) => {
+				return tileGIDs.map((tileGIDString, index) => {
+					const tileGID = Number(tileGIDString)
+
 					if (tileGID === 0) {
 						return null
 					}
