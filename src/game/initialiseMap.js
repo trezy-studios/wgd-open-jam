@@ -13,10 +13,13 @@ import { store } from '../store/store.js'
 
 
 
+/**
+ * Creates and stores the map.
+ */
 export function initialiseMap() {
 	const { viewport } = store.state
 
-	const map = new CompositeTilemap()
+	const map = new CompositeTilemap
 
 	map.tile(Assets.get('grass'), 0, 0)
 

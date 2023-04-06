@@ -14,6 +14,11 @@ import { store } from '../../store/store.js'
 
 
 
+/**
+ * Creates a new entity for the camera.
+ *
+ * @returns {object} The new entity.
+ */
 export function createCameraEntity() {
 	const {
 		pixiApp,

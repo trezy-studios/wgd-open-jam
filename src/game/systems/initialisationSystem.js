@@ -9,7 +9,7 @@ import { World } from 'miniplex'
 import { createCameraEntity } from '../entities/createCameraEntity.js'
 import { createController } from '../../helpers/createController.js'
 import { createPlayerEntity } from '../entities/createPlayerEntity.js'
-import { initialiseMap } from '../../helpers/initialiseMap.js'
+import { initialiseMap } from '../initialiseMap.js'
 import { store } from '../../store/store.js'
 
 

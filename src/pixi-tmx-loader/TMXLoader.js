@@ -1,17 +1,12 @@
 // Module imports
 import {
-	BaseTexture,
-	ExtensionType,
-	settings,
-	utils,
-	ALPHA_MODES,
-	MIPMAP_MODES,
-} from '@pixi/core'
-import {
 	checkExtension,
-	createTexture,
 	LoaderParserPriority,
 } from '@pixi/assets'
+import {
+	ExtensionType,
+	settings,
+} from '@pixi/core'
 
 
 
@@ -46,8 +41,8 @@ export const TMXLoader = {
 	 * Load a TMX file.
 	 *
 	 * @param {string} url The URL of the TMX file.
-	 * @param {import('@pixi/assets').LoadAsset} asset
-	 * @param {import('@pixi/assets').Loader} loader
+	 * @param {import('@pixi/assets').LoadAsset} asset The TMX file asset.
+	 * @param {import('@pixi/assets').Loader} loader The loader being used to load this asset.
 	 * @returns {import('@pixi/assets').Texture | import('@pixi/assets').Texture[]} The loaded textures.
 	 */
 	async load(url, asset, loader) {
@@ -120,7 +115,7 @@ export const TMXLoader = {
 						return null
 					}
 
-					const tilesetGID = tilesetGIDs.find(tilesetGID => (tilesetGID <= tileGID))
+					const tilesetGID = tilesetGIDs.find(gid => (gid <= tileGID))
 					const tileset = tmxObject.tilesets[tilesetGID]
 					const tileID = (tileGID - tilesetGID) + 1
 

@@ -19,6 +19,13 @@ export function createPlayerEntity() {
 		isPlayer: true,
 		...spriteComponent({
 			defaultAnimationName: 'idle-south',
+
+			/**
+			 * Points the viewport to the new sprite when the actor's sprite changes.
+			 *
+			 * @param {import('pixi.js').Sprite} oldSprite The old sprite.
+			 * @param {import('pixi.js').Sprite} newSprite The new sprite.
+			 */
 			onChange: (oldSprite, newSprite) => {
 				viewport.follow(newSprite, {
 					radius: 50,
