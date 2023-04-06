@@ -68,6 +68,7 @@ export function spriteComponent(options) {
 			return true
 		}
 
+		sprite.anchor.set(0.5, 0.5)
 		sprite.animationSpeed = 0.1666
 		sprite.play()
 
