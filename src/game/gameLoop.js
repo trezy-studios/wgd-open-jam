@@ -1,8 +1,10 @@
 // Local imports
 import { cameraSystem } from './systems/cameraSystem.js'
+import { collisionBodySystem } from './systems/collisionBodySystem.js'
 import { controllerSystem } from './systems/controllerSystem.js'
 import { initialisationSystem } from './systems/initialisationSystem.js'
 import { moveSystem } from './systems/moveSystem.js'
+import { renderPhysicsDebug } from './physics/index.js'
 import { renderSystem } from './systems/renderSystem.js'
 import { sortSystem } from './systems/sortSystem.js'
 import { store } from '../store/store.js'
@@ -29,6 +31,7 @@ export function gameLoop() {
 
 	initialisationSystem()
 	controllerSystem()
+	collisionBodySystem()
 	moveSystem()
 	sortSystem()
 	cameraSystem()
@@ -43,6 +46,8 @@ export function gameLoop() {
 	physicsEvents.drainCollisionEvents((collider1, collider2, started) => {
 		console.log('Collision Event', collider1, collider2, started)
 	})
+
+	renderPhysicsDebug(physicsWorld)
 
 	return true
 }
