@@ -1,13 +1,13 @@
 // Module imports
 import {
+	checkExtension,
+	LoaderParserPriority,
+} from '@pixi/assets'
+import {
 	ExtensionType,
 	settings,
 } from '@pixi/core'
 import { Spritesheet } from '@pixi/spritesheet'
-import {
-	checkExtension,
-	LoaderParserPriority,
-} from '@pixi/assets'
 
 
 
@@ -80,7 +80,7 @@ export const TSXLoader = {
 					h: Number(imageNode.getAttribute('height')),
 					w: Number(imageNode.getAttribute('width')),
 				},
-				scale: 1
+				scale: 1,
 			},
 			animations: {},
 		}
@@ -141,17 +141,4 @@ export const TSXLoader = {
 
 		return tsxObject
 	},
-
-	/**
-	 *
-	 * @param {import('@pixi/assets').Texture | import('@pixi/assets').Texture[]} texture
-	 */
-	unload(texture) {
-		if (Array.isArray(texture)) {
-			texture.forEach((t) => t.destroy(true))
-		}
-		else {
-			texture.destroy(true)
-		}
-	}
 }

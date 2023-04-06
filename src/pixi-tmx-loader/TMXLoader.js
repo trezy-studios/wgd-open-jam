@@ -1,17 +1,12 @@
 // Module imports
 import {
-	BaseTexture,
-	ExtensionType,
-	settings,
-	utils,
-	ALPHA_MODES,
-	MIPMAP_MODES,
-} from '@pixi/core'
-import {
 	checkExtension,
-	createTexture,
 	LoaderParserPriority,
 } from '@pixi/assets'
+import {
+	ExtensionType,
+	settings,
+} from '@pixi/core'
 
 
 
@@ -46,8 +41,8 @@ export const TMXLoader = {
 	 * Load a TMX file.
 	 *
 	 * @param {string} url The URL of the TMX file.
-	 * @param {import('@pixi/assets').LoadAsset} asset
-	 * @param {import('@pixi/assets').Loader} loader
+	 * @param {import('@pixi/assets').LoadAsset} asset The TMX file asset.
+	 * @param {import('@pixi/assets').Loader} loader The loader being used to load this asset.
 	 * @returns {import('@pixi/assets').Texture | import('@pixi/assets').Texture[]} The loaded textures.
 	 */
 	async load(url, asset, loader) {
@@ -61,21 +56,8 @@ export const TMXLoader = {
 
 		const assetBasePath = asset.src.replace(path.basename(asset.src), '')
 
-		const tilesets = await Promise.all(tilesetNodes.map(async tilesetNode => {
-			const tileset = await loader.load({
-				src: path.join(assetBasePath, tilesetNode.getAttribute('source')),
-			})
-
-			return {
-				globalTileID: Number(tilesetNode.getAttribute('firstgid')),
-				src: path.join(assetBasePath, tilesetNode.getAttribute('source')),
-				tileset,
-			}
-		}))
-
-		console.log({ tilesets })
-
-		return {
+		const tmxObject = {
+			layers: null,
 			meta: {
 				app: 'https://www.mapeditor.org/',
 				isInfinite: tmxDOM.getAttribute('infinite'),
@@ -89,37 +71,64 @@ export const TMXLoader = {
 				height: Number(tmxDOM.getAttribute('tileheight')),
 				width: Number(tmxDOM.getAttribute('tilewidth')),
 			},
-			tilesets,
+			tilesets: null,
 			size: {
 				height: Number(tmxDOM.getAttribute('height')),
 				width: Number(tmxDOM.getAttribute('width')),
 			},
 		}
 
-		// const textures = resources.map((resource) => {
-		// 	const base = new BaseTexture(resource, {
-		// 		mipmap: MIPMAP_MODES.OFF,
-		// 		alphaMode: ALPHA_MODES.NO_PREMULTIPLIED_ALPHA,
-		// 		resolution: utils.getResolutionOfUrl(url),
-		// 		...asset.data,
-		// 	})
+		const tilesetArray = await Promise.all(tilesetNodes.map(async tilesetNode => {
+			const tileset = await loader.load({
+				src: path.join(assetBasePath, tilesetNode.getAttribute('source')),
+			})
 
-		// 	return createTexture(base, loader, url)
-		// })
+			return {
+				globalTileID: Number(tilesetNode.getAttribute('firstgid')),
+				tileset,
+			}
+		}))
 
-		// return textures.length === 1 ? textures[0] : textures
+		tmxObject.tilesets = tilesetArray.reduce((accumulator, tileset) => {
+			accumulator[tileset.globalTileID] = tileset.tileset
+			return accumulator
+		}, {})
+
+		const tilesetGIDs = Object
+			.keys(tmxObject.tilesets)
+			.map(Number)
+			.sort()
+			.reverse()
+
+		tmxObject.layers = Array
+			.from(tmxDOM.querySelectorAll('layer'))
+			.map(layer => {
+				const dataNode = layer.querySelector('data')
+
+				const tileGIDs = dataNode
+					.innerHTML
+					.trim()
+					.split(',')
+
+				return tileGIDs.map((tileGID, index) => {
+					if (tileGID === 0) {
+						return null
+					}
+
+					const tilesetGID = tilesetGIDs.find(gid => (gid <= tileGID))
+					const tileset = tmxObject.tilesets[tilesetGID]
+					const tileID = (tileGID - tilesetGID) + 1
+
+					return {
+						height: tileset.tile.height,
+						texture: tileset.spritesheet.textures[tileID],
+						width: tileset.tile.width,
+						x: (index - (Math.floor(index / tmxObject.size.width) * tmxObject.size.width)) * tileset.tile.width,
+						y: Math.floor(index / tmxObject.size.width) * tileset.tile.height,
+					}
+				})
+			})
+
+		return tmxObject
 	},
-
-	// /**
-	//  *
-	//  * @param {import('@pixi/assets').Texture | import('@pixi/assets').Texture[]} texture
-	//  */
-	// unload(texture) {
-	// 	if (Array.isArray(texture)) {
-	// 		texture.forEach((t) => t.destroy(true))
-	// 	}
-	// 	else {
-	// 		texture.destroy(true)
-	// 	}
-	// }
 }

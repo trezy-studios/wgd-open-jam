@@ -27,8 +27,10 @@ import { store } from '../../store/store.js'
 /**
  * Marks whether an entity is renderable.
  *
- * @param {string} spritesheetName The name of the source spritesheet.
- * @param {string} defaultAnimationName The default animation.
+ * @param {object} options All options.
+ * @param {string} options.defaultAnimationName The default animation.
+ * @param {string} [options.onChange] A method to be run when the sprite is changed.
+ * @param {string} options.spritesheetName The name of the source spritesheet.
  * @returns {SpriteState} The entity's sprite state.
  */
 export function spriteComponent(options) {
@@ -76,7 +78,9 @@ export function spriteComponent(options) {
 
 		viewport.addChild(sprite)
 
-		onChange(state.sprite, sprite)
+		if (typeof onChange === 'function') {
+			onChange(state.sprite, sprite)
+		}
 
 		state.sprite = sprite
 

@@ -20,6 +20,9 @@ import { TSXLoader } from '../pixi-tmx-loader/TSXLoader.js'
 
 
 
+/**
+ * Initialises the Pixi app and any extensions.
+ */
 export function setupPixi() {
 	let { pixiApp } = store.state
 

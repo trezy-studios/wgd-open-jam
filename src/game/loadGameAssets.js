@@ -17,9 +17,9 @@ import { store } from '../store/store.js'
  * Handles loading all initial game assets.
  */
 export async function loadGameAssets() {
-	const bundles = []
+	const { pixiApp } = store.state
 
-	let { pixiApp } = store.state
+	const bundles = []
 
 	const bundleNames = ASSET_MANIFEST.bundles.map(bundle => bundle.name)
 
