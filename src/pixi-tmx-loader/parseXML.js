@@ -12,9 +12,7 @@ export function parseXML(xmlString) {
 	const errorNode = result.querySelector('parsererror')
 
 	if (errorNode) {
-		console.log('error while parsing')
-	} else {
-		console.log(result.documentElement.nodeName)
+		throw new Error('error while parsing XML', errorNode.innerHTML)
 	}
 
 	const rootNode = result.documentElement

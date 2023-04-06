@@ -21,7 +21,17 @@ export function initialiseMap() {
 
 	const map = new CompositeTilemap
 
-	map.tile(Assets.get('grass'), 0, 0)
+	const mapData = Assets.get('metropolis')
+
+	mapData.layers.forEach(layer => {
+		layer.forEach(tile => {
+			if (!tile) {
+				return
+			}
+
+			map.tile(tile.texture, tile.x, tile.y)
+		})
+	})
 
 	viewport.addChild(map)
 
