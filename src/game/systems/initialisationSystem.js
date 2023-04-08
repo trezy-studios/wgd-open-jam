@@ -18,6 +18,12 @@ import { store } from '../../store/store.js'
 
 
 
+let testColliderExists = null
+
+
+
+
+
 /** Ensures everything required for the game to run has been initialised. */
 export function initialisationSystem() {
 	const {
@@ -48,10 +54,14 @@ export function initialisationSystem() {
 		store.set(() => ({ player: createPlayerEntity(0, 0) }))
 	}
 
-	// Create a test static body
-	const b = createStaticBody(40, 40)
-	createCollider('rectangle', {
-		width: 32,
-		height: 32,
-	}, b)
+	if (!testColliderExists) {
+		// Create a test static body
+		const b = createStaticBody(40, 40)
+		createCollider('rectangle', {
+			width: 32,
+			height: 32,
+		}, b)
+
+		testColliderExists = true
+	}
 }
