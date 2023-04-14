@@ -116,7 +116,28 @@ export const TMXLoader = {
 					.from(layer.querySelectorAll('properties > property'))
 					.reduce((accumulator, propertyNode) => {
 						const propertyName = propertyNode.getAttribute('name')
-						const propertyValue = propertyNode.getAttribute('value')
+						const propertyType = propertyNode.getAttribute('type')
+						let propertyValue = propertyNode.getAttribute('value')
+
+						switch (propertyType) {
+							case 'bool':
+								if (propertyValue === 'true') {
+									propertyValue = true
+								} else if (propertyValue === 'false') {
+									propertyValue = false
+								}
+								break
+
+							case 'float':
+								propertyValue = parseFloat(propertyValue)
+								break
+
+							case 'int':
+								propertyValue = parseInt(propertyValue, 10)
+								break
+
+							default:
+						}
 
 						accumulator[propertyName] = propertyValue
 
