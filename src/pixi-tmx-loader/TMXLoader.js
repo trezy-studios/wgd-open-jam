@@ -97,8 +97,17 @@ export const TMXLoader = {
 		const tilesetGIDs = Object
 			.keys(tmxObject.tilesets)
 			.map(Number)
-			.sort()
-			.reverse()
+			.sort((itemA, itemB) => {
+				if (itemA < itemB) {
+					return 1
+				}
+
+				if (itemA > itemB) {
+					return -1
+				}
+
+				return 0
+			})
 
 		tmxObject.layers = Array
 			.from(tmxDOM.querySelectorAll('layer'))
