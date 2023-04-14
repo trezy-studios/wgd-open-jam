@@ -26,7 +26,7 @@ export function initialiseMap() {
 	mapData.layers.forEach(layer => {
 		const layerTilemap = new CompositeTilemap
 
-		layer.forEach(tile => {
+		layer.tiles.forEach(tile => {
 			if (!tile?.texture) {
 				console.warn('Attempted to load tile which has no texture')
 				return

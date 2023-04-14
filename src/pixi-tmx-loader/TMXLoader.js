@@ -112,6 +112,17 @@ export const TMXLoader = {
 		tmxObject.layers = Array
 			.from(tmxDOM.querySelectorAll('layer'))
 			.map(layer => {
+				const properties = Array
+					.from(layer.querySelectorAll('properties > property'))
+					.reduce((accumulator, propertyNode) => {
+						const propertyName = propertyNode.getAttribute('name')
+						const propertyValue = propertyNode.getAttribute('value')
+
+						accumulator[propertyName] = propertyValue
+
+						return accumulator
+					}, {})
+
 				const dataNode = layer.querySelector('data')
 
 				const tileGIDs = dataNode
@@ -119,7 +130,7 @@ export const TMXLoader = {
 					.trim()
 					.split(',')
 
-				return tileGIDs.map((tileGIDString, index) => {
+				const tiles = tileGIDs.map((tileGIDString, index) => {
 					const tileGID = Number(tileGIDString)
 
 					if (tileGID === 0) {
@@ -138,6 +149,11 @@ export const TMXLoader = {
 						y: Math.floor(index / tmxObject.size.width) * tileset.tile.height,
 					}
 				})
+
+				return {
+					tiles,
+					properties,
+				}
 			})
 
 		return tmxObject
