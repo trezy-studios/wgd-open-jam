@@ -24,6 +24,10 @@ export function initialiseMap() {
 	const mapData = Assets.get('metropolis')
 
 	mapData.layers.forEach(layer => {
+		if (!layer.properties.isRenderable) {
+			return
+		}
+
 		const layerTilemap = new CompositeTilemap
 
 		layer.tiles.forEach(tile => {
