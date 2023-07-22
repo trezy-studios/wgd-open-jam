@@ -29,7 +29,7 @@ export function initialisationSystem() {
 	const {
 		camera,
 		controller,
-		map,
+		isMapInitialised,
 		player,
 		world,
 	} = store.state
@@ -46,21 +46,22 @@ export function initialisationSystem() {
 		store.set(() => ({ camera: createCameraEntity() }))
 	}
 
-	if (!map) {
+	if (!isMapInitialised) {
 		initialiseMap()
 	}
 
 	if (!player) {
-		store.set(() => ({ player: createPlayerEntity(0, 0) }))
+		const newPlayer = createPlayerEntity(50 * 8 * 8, 94 * 8 * 8)
+		store.set(() => ({ player: newPlayer }))
 	}
 
 	if (!testColliderExists) {
 		// Create a test static body
-		const b = createStaticBody(40, 40)
+		const testBody = createStaticBody(50 * 8, 90 * 8)
 		createCollider('rectangle', {
 			width: 32,
 			height: 32,
-		}, b)
+		}, testBody)
 
 		testColliderExists = true
 	}

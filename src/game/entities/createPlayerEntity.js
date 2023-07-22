@@ -15,32 +15,28 @@ import { store } from '../../store/store.js'
  * @returns {object} The new entity.
  */
 export function createPlayerEntity(x, y) {
-	const { viewport } = store.state
+	const {
+		playerContainer,
+		viewport,
+	} = store.state
 
 	const player = createActorEntity(x, y, {
 		isPlayer: true,
 		...spriteComponent({
 			defaultAnimationName: 'idle-south',
-
-			/**
-			 * Points the viewport to the new sprite when the actor's sprite changes.
-			 *
-			 * @param {import('pixi.js').Sprite} oldSprite The old sprite.
-			 * @param {import('pixi.js').Sprite} newSprite The new sprite.
-			 */
-			onChange: (oldSprite, newSprite) => {
-				viewport.follow(newSprite, {
-					radius: 50,
-					speed: 50,
-				})
-			},
+			spriteContainer: playerContainer,
 			spritesheetName: 'player-spritesheet',
 		}),
 	})
 
 	player.size.height = player.sprite.sprite.height
 	player.size.width = player.sprite.sprite.width
-	player.velocity.speed = 1.5
+	player.velocity.speed = 3
+
+	viewport.follow(player.sprite.spriteContainer, {
+		radius: 50,
+		speed: 50,
+	})
 
 	return player
 }

@@ -13,6 +13,7 @@ import {
 
 
 // Local imports
+import { parseTMXLayers } from './parseTMXLayers.js'
 import { parseXML } from './parseXML.js'
 import * as path from './path.js'
 
@@ -97,39 +98,23 @@ export const TMXLoader = {
 		const tilesetGIDs = Object
 			.keys(tmxObject.tilesets)
 			.map(Number)
-			.sort()
-			.reverse()
+			.sort((itemA, itemB) => {
+				if (itemA < itemB) {
+					return 1
+				}
 
-		tmxObject.layers = Array
-			.from(tmxDOM.querySelectorAll('layer'))
-			.map(layer => {
-				const dataNode = layer.querySelector('data')
+				if (itemA > itemB) {
+					return -1
+				}
 
-				const tileGIDs = dataNode
-					.innerHTML
-					.trim()
-					.split(',')
-
-				return tileGIDs.map((tileGIDString, index) => {
-					const tileGID = Number(tileGIDString)
-
-					if (tileGID === 0) {
-						return null
-					}
-
-					const tilesetGID = tilesetGIDs.find(gid => (gid <= tileGID))
-					const tileset = tmxObject.tilesets[tilesetGID]
-					const tileID = (tileGID - tilesetGID) + 1
-
-					return {
-						height: tileset.tile.height,
-						texture: tileset.spritesheet.textures[tileID],
-						width: tileset.tile.width,
-						x: (index - (Math.floor(index / tmxObject.size.width) * tmxObject.size.width)) * tileset.tile.width,
-						y: Math.floor(index / tmxObject.size.width) * tileset.tile.height,
-					}
-				})
+				return 0
 			})
+
+		tmxObject.layers = parseTMXLayers(tmxDOM, {
+			tilesetGIDs,
+			tilesets: tmxObject.tilesets,
+			width: tmxObject.size.width,
+		})
 
 		return tmxObject
 	},
