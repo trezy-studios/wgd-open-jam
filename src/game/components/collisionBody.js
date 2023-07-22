@@ -16,7 +16,7 @@ import {
  * @returns {object} The entity's initial position.
  */
 export function collisionBody(x, y, shape, radius, width, height) {
-	const body = createDynamicBody(x / PIXELS_PER_METER, y / PIXELS_PER_METER)
+	const body = createDynamicBody(x, y)
 	const collider = createCollider(shape, {
 		radius,
 		width,
