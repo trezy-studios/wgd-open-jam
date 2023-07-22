@@ -45,10 +45,8 @@ export function renderSystem() {
 			}
 
 			if (horizontalMovement < 0) {
-				entity.sprite.sprite.anchor.x = 1
 				entity.sprite.sprite.scale.x = Math.abs(entity.sprite.sprite.scale.x) * -1
 			} else if (horizontalMovement > 0) {
-				entity.sprite.sprite.anchor.x = 0
 				entity.sprite.sprite.scale.x = Math.abs(entity.sprite.sprite.scale.x)
 			}
 

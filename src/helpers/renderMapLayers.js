@@ -16,7 +16,7 @@ import { store } from '../store/store.js'
 
 
 /**
- * Renders
+ * Renders map layers.
  *
  * @param {object[]} layers The layer to be rendered.
  * @param {Container} targetContainer The container into which new layers will be rendered.

@@ -43,9 +43,11 @@ export function initialisationSystem() {
 	}
 
 	if (!player) {
-		const newPlayer = createPlayerEntity()
-		newPlayer.position.x = 50 * 8
-		newPlayer.position.y = 94 * 8
+		// TODO: Figure out why the fuck this is a thing.
+		const newPlayer = createPlayerEntity(
+			50 * 8 * 8,
+			94 * 8 * 8,
+		)
 		store.set(() => ({ player: newPlayer }))
 	}
 }

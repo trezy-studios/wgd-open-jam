@@ -14,6 +14,7 @@ import {
 
 // Local imports
 import { parseTMXLayers } from './parseTMXLayers.js'
+import { parseTMXObjects } from './parseTMXObjects.js'
 import { parseXML } from './parseXML.js'
 import * as path from './path.js'
 
@@ -115,6 +116,8 @@ export const TMXLoader = {
 			tilesets: tmxObject.tilesets,
 			width: tmxObject.size.width,
 		})
+
+		tmxObject.objects = parseTMXObjects(tmxDOM)
 
 		return tmxObject
 	},
