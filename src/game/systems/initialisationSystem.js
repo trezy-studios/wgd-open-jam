@@ -45,8 +45,8 @@ export function initialisationSystem() {
 	if (!player) {
 		// TODO: Figure out why the fuck this is a thing.
 		const newPlayer = createPlayerEntity(
-			50 * 8 * 8,
-			94 * 8 * 8,
+			50 * 8,
+			94 * 8,
 		)
 		store.set(() => ({ player: newPlayer }))
 	}
