@@ -12,10 +12,10 @@ export const store = makeStore({
 	/** @type {number} */
 	assetLoadingProgress: 0,
 
-	/** @type {object} */
+	/** @type {null | object} */
 	camera: null,
 
-	/** @type {import('@hmans/controlfreak').Controller} */
+	/** @type {null | import('@hmans/controlfreak').Controller} */
 	controller: null,
 
 	/** @type {boolean} */
@@ -25,23 +25,26 @@ export const store = makeStore({
 	isLoadingAssets: false,
 
 	/** @type {boolean} */
+	isMapInitialised: false,
+
+	/** @type {boolean} */
 	isPaused: false,
 
 	/** @type {boolean} */
 	isUploadingAssetsToGPU: false,
 
-	/** @type {import('@pixi/tilemap').CompositeTilemap[]} */
-	map: null,
-
-	/** @type {object} */
+	/** @type {null | object} */
 	player: null,
 
-	/** @type {import('pixi.js').Application} */
+	/** @type {null | import('pixi.js').Container} */
+	playerContainer: null,
+
+	/** @type {null | import('pixi.js').Application} */
 	pixiApp: null,
 
-	/** @type {import('pixi-viewport').Viewport} */
+	/** @type {null | import('pixi-viewport').Viewport} */
 	viewport: null,
 
-	/** @type {import('miniplex').World} */
+	/** @type {null | import('miniplex').World} */
 	world: null,
 })

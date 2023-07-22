@@ -25,12 +25,12 @@ export function renderSystem() {
 
 	for (const entity of renderableEntitites) {
 		if (!entity.sprite.isStaged) {
-			viewport.addChild(entity.sprite.sprite)
+			viewport.addChild(entity.sprite.spriteContainer)
 			entity.sprite.isStaged = true
 		}
 
-		const horizontalMovement = entity.position.x - entity.sprite.sprite.x
-		const verticalMovement = entity.position.y - entity.sprite.sprite.y
+		const horizontalMovement = entity.position.x - entity.sprite.spriteContainer.x
+		const verticalMovement = entity.position.y - entity.sprite.spriteContainer.y
 
 		if (entity.isPlayer && entity.sprite.isAnimated) {
 			let animationDirection = 'south'
@@ -55,11 +55,7 @@ export function renderSystem() {
 			entity.sprite.setAnimation(`${animationName}-${animationDirection}`)
 		}
 
-		entity.sprite.sprite.x = entity.position.x
-		entity.sprite.sprite.y = entity.position.y
-
-		// renderEntity(entity)
+		entity.sprite.spriteContainer.x = entity.position.x
+		entity.sprite.spriteContainer.y = entity.position.y
 	}
-
-	// advanceFrame()
 }

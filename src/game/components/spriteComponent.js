@@ -2,6 +2,7 @@
 import {
 	AnimatedSprite,
 	Assets,
+	Container,
 } from 'pixi.js'
 
 
@@ -22,31 +23,42 @@ import { store } from '../../store/store.js'
  * @property {boolean} sprite.isStaged Whether this sprite has been added to the Pixi stage.
  * @property {Function} sprite.setAnimation Updates the animation being used for the sprite.
  * @property {import('pixi.js').Sprite} sprite.sprite The sprite to be rendered.
+ * @property {import('pixi.js').Container} sprite.spriteContainer The container of the sprite; mostly used for positioning.
  */
 
 /**
  * Marks whether an entity is renderable.
  *
- * @param {object} options All options.
- * @param {string} options.defaultAnimationName The default animation.
- * @param {string} [options.onChange] A method to be run when the sprite is changed.
- * @param {string} options.spritesheetName The name of the source spritesheet.
+ * @param {object} config All config.
+ * @param {string} config.defaultAnimationName The default animation.
+ * @param {Function} [config.onChange] A method to be run when the sprite is changed.
+ * @param {import('pixi.js').Container} [spriteContainer] A pre-initialised container for this sprite.
+ * @param {string} config.spritesheetName The name of the source spritesheet.
  * @returns {SpriteState} The entity's sprite state.
  */
-export function spriteComponent(options) {
+export function spriteComponent(config) {
+	const { viewport } = store.state
+
 	const {
 		defaultAnimationName,
 		onChange,
+		spriteContainer,
 		spritesheetName,
-	} = options
+	} = config
 
 	const state = {
 		isAnimated: true,
 		isStaged: true,
 		setAnimation: null,
 		sprite: null,
+		spriteContainer: spriteContainer ?? new Container,
 	}
+
 	const spriteCache = {}
+
+	if (!viewport.children.includes(state.spriteContainer)) {
+		viewport.addChild(state.spriteContainer)
+	}
 
 	/**
 	 * Updates the current sprite/animation.
@@ -55,8 +67,6 @@ export function spriteComponent(options) {
 	 * @returns {boolean} Whether the animation was updated successfully.
 	 */
 	state.setAnimation = animationName => {
-		const { viewport } = store.state
-
 		if (!spriteCache[animationName]) {
 			const spritesheet = Assets.get(spritesheetName)
 			spriteCache[animationName] = new AnimatedSprite(spritesheet.animations[animationName])
@@ -73,10 +83,10 @@ export function spriteComponent(options) {
 
 		if (state.sprite) {
 			state.sprite.gotoAndStop(0)
-			viewport.removeChild(state.sprite)
+			state.spriteContainer.removeChild(state.sprite)
 		}
 
-		viewport.addChild(sprite)
+		state.spriteContainer.addChild(sprite)
 
 		if (typeof onChange === 'function') {
 			onChange(state.sprite, sprite)
@@ -89,7 +99,5 @@ export function spriteComponent(options) {
 
 	state.setAnimation(defaultAnimationName)
 
-	return {
-		sprite: state,
-	}
+	return { sprite: state }
 }
