@@ -1,12 +1,12 @@
 // Module imports
 import { Assets } from 'pixi.js'
-import { CompositeTilemap } from '@pixi/tilemap'
 
 
 
 
 
 // Local imports
+import { renderMapLayers } from '../helpers/renderMapLayers.js'
 import { store } from '../store/store.js'
 
 
@@ -19,32 +19,9 @@ import { store } from '../store/store.js'
 export function initialiseMap() {
 	const { viewport } = store.state
 
-	const map = []
+	const mapData = Assets.get('town-map')
 
-	const mapData = Assets.get('metropolis')
+	renderMapLayers(mapData.layers, viewport)
 
-	mapData.layers.forEach(layer => {
-		if (!layer.properties.isRenderable) {
-			return
-		}
-
-		const layerTilemap = new CompositeTilemap
-
-		layer.tiles.forEach(tile => {
-			if (!tile?.texture) {
-				console.warn('Attempted to load tile which has no texture')
-				return
-			}
-
-			const tileOptions = {}
-
-			layerTilemap.tile(tile.texture, tile.x, tile.y, tileOptions)
-		})
-
-		map.push(layerTilemap)
-
-		viewport.addChild(layerTilemap)
-	})
-
-	store.set(() => ({ map }))
+	store.set(() => ({ isMapInitialised: true }))
 }

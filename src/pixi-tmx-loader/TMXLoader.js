@@ -13,6 +13,7 @@ import {
 
 
 // Local imports
+import { parseTMXLayers } from './parseTMXLayers.js'
 import { parseXML } from './parseXML.js'
 import * as path from './path.js'
 
@@ -109,73 +110,11 @@ export const TMXLoader = {
 				return 0
 			})
 
-		tmxObject.layers = Array
-			.from(tmxDOM.querySelectorAll('layer'))
-			.map(layer => {
-				const properties = Array
-					.from(layer.querySelectorAll('properties > property'))
-					.reduce((accumulator, propertyNode) => {
-						const propertyName = propertyNode.getAttribute('name')
-						const propertyType = propertyNode.getAttribute('type')
-						let propertyValue = propertyNode.getAttribute('value')
-
-						switch (propertyType) {
-							case 'bool':
-								if (propertyValue === 'true') {
-									propertyValue = true
-								} else if (propertyValue === 'false') {
-									propertyValue = false
-								}
-								break
-
-							case 'float':
-								propertyValue = parseFloat(propertyValue)
-								break
-
-							case 'int':
-								propertyValue = parseInt(propertyValue, 10)
-								break
-
-							default:
-						}
-
-						accumulator[propertyName] = propertyValue
-
-						return accumulator
-					}, {})
-
-				const dataNode = layer.querySelector('data')
-
-				const tileGIDs = dataNode
-					.innerHTML
-					.trim()
-					.split(',')
-
-				const tiles = tileGIDs.map((tileGIDString, index) => {
-					const tileGID = Number(tileGIDString)
-
-					if (tileGID === 0) {
-						return null
-					}
-
-					const tilesetGID = tilesetGIDs.find(gid => (gid <= tileGID))
-					const tileset = tmxObject.tilesets[tilesetGID]
-					const tileID = (tileGID - tilesetGID) + 1
-
-					return {
-						height: tileset.tile.height,
-						texture: tileset.spritesheet.textures[tileID],
-						width: tileset.tile.width,
-						x: (index - (Math.floor(index / tmxObject.size.width) * tmxObject.size.width)) * tileset.tile.width,
-						y: Math.floor(index / tmxObject.size.width) * tileset.tile.height,
-					}
-				})
-
-				return {
-					tiles,
-					properties,
-				}
-			})
+		tmxObject.layers = parseTMXLayers(tmxDOM, {
+			tilesetGIDs,
+			tilesets: tmxObject.tilesets,
+			width: tmxObject.size.width,
+		})
 
 		return tmxObject
 	},

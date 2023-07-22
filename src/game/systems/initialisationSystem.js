@@ -21,7 +21,7 @@ export function initialisationSystem() {
 	const {
 		camera,
 		controller,
-		map,
+		isMapInitialised,
 		player,
 		world,
 	} = store.state
@@ -38,7 +38,7 @@ export function initialisationSystem() {
 		store.set(() => ({ camera: createCameraEntity() }))
 	}
 
-	if (!map) {
+	if (!isMapInitialised) {
 		initialiseMap()
 	}
 
