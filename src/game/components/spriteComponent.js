@@ -32,7 +32,7 @@ import { store } from '../../store/store.js'
  * @param {object} config All config.
  * @param {string} config.defaultAnimationName The default animation.
  * @param {Function} [config.onChange] A method to be run when the sprite is changed.
- * @param {import('pixi.js').Container} [spriteContainer] A pre-initialised container for this sprite.
+ * @param {import('pixi.js').Container} [config.spriteContainer] A pre-initialised container for this sprite.
  * @param {string} config.spritesheetName The name of the source spritesheet.
  * @returns {SpriteState} The entity's sprite state.
  */
