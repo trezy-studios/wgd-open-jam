@@ -7,6 +7,7 @@ import { moveSystem } from './systems/moveSystem.js'
 import { renderPhysicsDebug } from './physics/index.js'
 import { renderSystem } from './systems/renderSystem.js'
 import { sortSystem } from './systems/sortSystem.js'
+import { spawnSystem } from './systems/spawnSystem.js'
 import { store } from '../store/store.js'
 
 
@@ -31,6 +32,7 @@ export function gameLoop() {
 
 	initialisationSystem()
 	controllerSystem()
+	spawnSystem()
 	collisionBodySystem()
 	moveSystem()
 	sortSystem()

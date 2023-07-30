@@ -6,8 +6,7 @@ import { Assets } from 'pixi.js'
 
 
 // Local imports
-import { createMapBodies } from '../helpers/createMapBodies.js'
-import { renderMapLayers } from '../helpers/renderMapLayers.js'
+import { createMapLayers } from '../helpers/createMapLayers.js'
 import { store } from '../store/store.js'
 
 
@@ -20,10 +19,9 @@ import { store } from '../store/store.js'
 export function initialiseMap() {
 	const { viewport } = store.state
 
-	const mapData = Assets.get('town-map')
+	const mapData = Assets.get('world')
 
-	renderMapLayers(mapData.layers, viewport)
-	createMapBodies(mapData.objects)
+	createMapLayers(mapData, viewport)
 
 	store.set(() => ({ isMapInitialised: true }))
 }

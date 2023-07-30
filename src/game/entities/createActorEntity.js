@@ -1,10 +1,10 @@
 // Local imports
 import { collisionBody } from '../components/collisionBody.js'
+import { createEntity } from './createEntity.js'
 import { inventory } from '../components/inventory.js'
 import { isRenderable } from '../components/isRenderable.js'
 import { position } from '../components/position.js'
 import { size } from '../components/size.js'
-import { store } from '../../store/store.js'
 import { velocity } from '../components/velocity.js'
 
 
@@ -20,9 +20,7 @@ import { velocity } from '../components/velocity.js'
  * @returns {object} The new entity.
  */
 export function createActorEntity(x, y, components = {}) {
-	const { world } = store.state
-
-	const actor = world.add({
+	return createEntity(x, y, {
 		// TODO: Figure out how to make these sizing of the collision body dynamic
 		...collisionBody(x, y, 'rectangle', null, 8, 8),
 		...inventory(),
@@ -32,6 +30,4 @@ export function createActorEntity(x, y, components = {}) {
 		...velocity(),
 		...components,
 	})
-
-	return actor
 }

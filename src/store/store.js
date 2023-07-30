@@ -19,6 +19,9 @@ export const store = makeStore({
 	controller: null,
 
 	/** @type {boolean} */
+	isEntitiesInitialised: false,
+
+	/** @type {boolean} */
 	isInitialising: false,
 
 	/** @type {boolean} */
@@ -35,9 +38,6 @@ export const store = makeStore({
 
 	/** @type {null | object} */
 	player: null,
-
-	/** @type {null | import('pixi.js').Container} */
-	playerContainer: null,
 
 	/** @type {null | import('pixi.js').Application} */
 	pixiApp: null,

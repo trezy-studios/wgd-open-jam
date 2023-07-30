@@ -12,9 +12,8 @@ import {
 
 
 // Local imports
+import { LDTKLoader } from '../pixi-ldtk-loader/LDTKLoader.js'
 import { store } from '../store/store.js'
-import { TMXLoader } from '../pixi-tmx-loader/TMXLoader.js'
-import { TSXLoader } from '../pixi-tmx-loader/TSXLoader.js'
 
 
 
@@ -35,8 +34,7 @@ export function setupPixi() {
 		settings.TEXTURES_PER_TILEMAP = 4
 		settings.use32bitIndex = true
 
-		extensions.add(TMXLoader)
-		extensions.add(TSXLoader)
+		extensions.add(LDTKLoader)
 
 		// Create the Pixi app.
 		pixiApp = new Application({

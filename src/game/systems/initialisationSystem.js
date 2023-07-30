@@ -8,7 +8,7 @@ import { World } from 'miniplex'
 // Local imports
 import { createCameraEntity } from '../entities/createCameraEntity.js'
 import { createController } from '../../helpers/createController.js'
-import { createPlayerEntity } from '../entities/createPlayerEntity.js'
+import { initialiseEntities } from '../initialiseEntities.js'
 import { initialiseMap } from '../initialiseMap.js'
 import { store } from '../../store/store.js'
 
@@ -21,8 +21,8 @@ export function initialisationSystem() {
 	const {
 		camera,
 		controller,
+		isEntitiesInitialised,
 		isMapInitialised,
-		player,
 		world,
 	} = store.state
 
@@ -42,12 +42,7 @@ export function initialisationSystem() {
 		initialiseMap()
 	}
 
-	if (!player) {
-		// TODO: Figure out why the fuck this is a thing.
-		const newPlayer = createPlayerEntity(
-			50 * 8,
-			94 * 8,
-		)
-		store.set(() => ({ player: newPlayer }))
+	if (!isEntitiesInitialised) {
+		initialiseEntities()
 	}
 }
