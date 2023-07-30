@@ -8,7 +8,7 @@ import { store } from '../../store/store.js'
 
 // import { DEBUG, PIXELS_PER_METER } from '@utils/const'
 
-let GRAPHICS = []
+let GRAPHICS_CACHE = []
 
 /**
  * Renders debug rectangles for all rigid bodies and colliders
@@ -16,19 +16,27 @@ let GRAPHICS = []
  */
 export function renderDebug() {
 	const buffers = store.state.physicsWorld.debugRender()
-	const vtx = buffers.vertices
+	const allVertices = buffers.vertices
 
-	GRAPHICS.forEach(g => g.destroy())
-	GRAPHICS = []
+	const { viewport } = store.state
 
-	for (let i = 0; i < vtx.length / 4; i += 1) {
-		const g = new Graphics
-		g.lineStyle(0.5, 0x00ff00, 1)
-		g.moveTo(vtx[i * 4] * PIXELS_PER_METER, vtx[i * 4 + 1] * PIXELS_PER_METER)
-		g.lineTo(vtx[i * 4 + 2] * PIXELS_PER_METER, vtx[i * 4 + 3] * PIXELS_PER_METER)
-		g.closePath()
-		GRAPHICS.push(g)
+	GRAPHICS_CACHE.forEach(graphics => graphics.destroy())
+	GRAPHICS_CACHE = []
 
-		store.state.viewport.addChild(g)
+	let vertexIndex = 0
+
+	while (vertexIndex < allVertices.length) {
+		const vertexBaseIndex = vertexIndex * 4
+
+		const graphics = new Graphics
+		graphics.lineStyle(0.5, 0x00ff00, 1)
+		graphics.moveTo(allVertices[vertexBaseIndex] * PIXELS_PER_METER, allVertices[vertexBaseIndex + 1] * PIXELS_PER_METER)
+		graphics.lineTo(allVertices[vertexBaseIndex + 2] * PIXELS_PER_METER, allVertices[vertexBaseIndex + 3] * PIXELS_PER_METER)
+		graphics.closePath()
+
+		GRAPHICS_CACHE.push(graphics)
+		viewport.addChild(graphics)
+
+		vertexIndex += 1
 	}
 }

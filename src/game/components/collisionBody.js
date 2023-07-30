@@ -1,7 +1,6 @@
 import {
 	createCollider,
 	createDynamicBody,
-	PIXELS_PER_METER,
 } from '../physics'
 
 /**
