@@ -7,12 +7,12 @@ import { getCollidableEntities } from '../entities/selectors/getCollidableEntiti
 
 /** Updates the player character's position based on controller inputs. */
 export function collisionBodySystem() {
-	for (const entt of getCollidableEntities()) {
+	for (const entity of getCollidableEntities()) {
 		// If entity also has the velocity component
-		if (entt.velocity) {
-			entt.collisionBody.body.setLinvel({
-				x: entt.velocity.x,
-				y: entt.velocity.y,
+		if (entity.velocity) {
+			entity.collisionBody.body.setLinvel({
+				x: entity.velocity.x,
+				y: entity.velocity.y,
 			}, true)
 		}
 	}

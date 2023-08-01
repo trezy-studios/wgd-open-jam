@@ -72,7 +72,6 @@ export function createCollider(shape, config, parentRigidBody) {
 
 	if (!parentRigidBody) {
 		colliderDesc.setSensor(true)
-		colliderDesc.setActiveHooks(RAPIER.ActiveHooks.FILTER_INTERSECTION_PAIRS)
 	}
 
 	colliderDesc.setFriction(0)
@@ -82,7 +81,10 @@ export function createCollider(shape, config, parentRigidBody) {
 	const collider = physicsWorld.createCollider(colliderDesc, parentRigidBody)
 
 	if (config.x && config.y) {
-		collider.setTranslation(config.x, config.y)
+		collider.setTranslation(new RAPIER.Vector2(
+			(config.x / PIXELS_PER_METER) + (config.width / PIXELS_PER_METER / 2),
+			(config.y / PIXELS_PER_METER) + (config.height / PIXELS_PER_METER / 2),
+		))
 	}
 
 	return collider
