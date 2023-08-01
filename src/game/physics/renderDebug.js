@@ -1,4 +1,6 @@
+// Module imports
 import {
+	Color,
 	Graphics,
 } from 'pixi.js'
 import { PIXELS_PER_METER } from '.'
@@ -17,6 +19,7 @@ let GRAPHICS_CACHE = []
 export function renderDebug() {
 	const buffers = store.state.physicsWorld.debugRender()
 	const allVertices = buffers.vertices
+	const allColors = buffers.colors
 
 	const { viewport } = store.state
 
@@ -27,15 +30,25 @@ export function renderDebug() {
 
 	while (vertexIndex < allVertices.length) {
 		const vertexBaseIndex = vertexIndex * 4
+		const colorBaseIndex = vertexBaseIndex * 2
 
-		const graphics = new Graphics
-		graphics.lineStyle(0.5, 0x00ff00, 1)
-		graphics.moveTo(allVertices[vertexBaseIndex] * PIXELS_PER_METER, allVertices[vertexBaseIndex + 1] * PIXELS_PER_METER)
-		graphics.lineTo(allVertices[vertexBaseIndex + 2] * PIXELS_PER_METER, allVertices[vertexBaseIndex + 3] * PIXELS_PER_METER)
-		graphics.closePath()
+		if (allColors[colorBaseIndex]) {
+			const color = new Color({
+				r: allColors[colorBaseIndex] * 255,
+				g: allColors[colorBaseIndex + 1] * 255,
+				b: allColors[colorBaseIndex + 2] * 255,
+				a: allColors[colorBaseIndex + 3] * 255,
+			})
 
-		GRAPHICS_CACHE.push(graphics)
-		viewport.addChild(graphics)
+			const graphics = new Graphics
+			graphics.lineStyle(0.5, color, 1)
+			graphics.moveTo(allVertices[vertexBaseIndex] * PIXELS_PER_METER, allVertices[vertexBaseIndex + 1] * PIXELS_PER_METER)
+			graphics.lineTo(allVertices[vertexBaseIndex + 2] * PIXELS_PER_METER, allVertices[vertexBaseIndex + 3] * PIXELS_PER_METER)
+			graphics.closePath()
+
+			GRAPHICS_CACHE.push(graphics)
+			viewport.addChild(graphics)
+		}
 
 		vertexIndex += 1
 	}
