@@ -60,6 +60,7 @@ export function createCollider(shape, config, parentRigidBody) {
 	// }
 
 	let colliderDesc = null
+
 	if (shape === 'circle') {
 		colliderDesc = buildCircleCollider(config.radius)
 	} else if (shape === 'rectangle') {
@@ -69,8 +70,20 @@ export function createCollider(shape, config, parentRigidBody) {
 		return null
 	}
 
+	if (!parentRigidBody) {
+		colliderDesc.setSensor(true)
+		colliderDesc.setActiveHooks(RAPIER.ActiveHooks.FILTER_INTERSECTION_PAIRS)
+	}
+
 	colliderDesc.setFriction(0)
+	colliderDesc.setActiveEvents(RAPIER.ActiveEvents.COLLISION_EVENTS)
 
 	const { physicsWorld } = store.state
-	return physicsWorld.createCollider(colliderDesc, parentRigidBody)
+	const collider = physicsWorld.createCollider(colliderDesc, parentRigidBody)
+
+	if (config.x && config.y) {
+		collider.setTranslation(config.x, config.y)
+	}
+
+	return collider
 }

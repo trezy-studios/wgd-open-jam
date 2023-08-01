@@ -15,8 +15,8 @@ export function physicsSystem() {
 
 	physicsWorld.step(physicsEvents)
 
-	physicsEvents.drainContactForceEvents(evt => {
-		console.log('Contact Event', evt)
+	physicsEvents.drainContactForceEvents(event => {
+		console.log('Contact Event', event)
 	})
 
 	physicsEvents.drainCollisionEvents((collider1, collider2, started) => {
