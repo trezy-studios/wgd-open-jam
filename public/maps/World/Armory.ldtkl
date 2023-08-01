@@ -38,7 +38,7 @@
 			"__pxTotalOffsetX": 0,
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 1392,
-			"__tilesetRelPath": "../sprites/world/town.png",
+			"__tilesetRelPath": "../../sprites/world/town.png",
 			"iid": "7adb66c2-1460-11ee-a9ea-b1313eaaaa1d",
 			"levelId": 1401,
 			"layerDefUid": 1394,
@@ -181,7 +181,9 @@
 					"px": [32,192],
 					"fieldInstances": [
 						{ "__identifier": "EntityType", "__type": "LocalEnum.EntityType", "__value": "Trigger", "__tile": null, "defUid": 1417, "realEditorValues": [] },
-						{ "__identifier": "Destination", "__type": "EntityRef", "__value": {
+						{ "__identifier": "TriggerCondition", "__type": "LocalEnum.TriggerCondition", "__value": "OnPlayerEnter", "__tile": null, "defUid": 1419, "realEditorValues": [] },
+						{ "__identifier": "TriggerAction", "__type": "LocalEnum.TriggerAction", "__value": "Teleport", "__tile": null, "defUid": 1421, "realEditorValues": [] },
+						{ "__identifier": "TeleportDestination", "__type": "EntityRef", "__value": {
 							"entityIid": "631d9a60-1460-11ee-a9ea-fdbfeb520d51",
 							"layerIid": "76d0f780-1460-11ee-a9ea-31071bdb15ed",
 							"levelIid": "0af85600-1460-11ee-8cad-ed2e2f305fee",
@@ -206,7 +208,9 @@
 					"px": [216,192],
 					"fieldInstances": [
 						{ "__identifier": "EntityType", "__type": "LocalEnum.EntityType", "__value": "Trigger", "__tile": null, "defUid": 1417, "realEditorValues": [] },
-						{ "__identifier": "Destination", "__type": "EntityRef", "__value": {
+						{ "__identifier": "TriggerCondition", "__type": "LocalEnum.TriggerCondition", "__value": "OnPlayerEnter", "__tile": null, "defUid": 1419, "realEditorValues": [] },
+						{ "__identifier": "TriggerAction", "__type": "LocalEnum.TriggerAction", "__value": "Teleport", "__tile": null, "defUid": 1421, "realEditorValues": [] },
+						{ "__identifier": "TeleportDestination", "__type": "EntityRef", "__value": {
 							"entityIid": "644e7940-1460-11ee-a9ea-1563f9130537",
 							"layerIid": "76d0f780-1460-11ee-a9ea-31071bdb15ed",
 							"levelIid": "0af85600-1460-11ee-8cad-ed2e2f305fee",
@@ -229,7 +233,7 @@
 			"__pxTotalOffsetX": 0,
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 1392,
-			"__tilesetRelPath": "../sprites/world/town.png",
+			"__tilesetRelPath": "../../sprites/world/town.png",
 			"iid": "7adb66c3-1460-11ee-a9ea-dd05e0722a49",
 			"levelId": 1401,
 			"layerDefUid": 1393,
@@ -1133,7 +1137,7 @@
 			"__pxTotalOffsetX": 0,
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 4,
-			"__tilesetRelPath": "../sprites/world/terrain.png",
+			"__tilesetRelPath": "../../sprites/world/terrain.png",
 			"iid": "7adb66c4-1460-11ee-a9ea-61117908653e",
 			"levelId": 1401,
 			"layerDefUid": 2,
