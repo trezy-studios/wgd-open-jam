@@ -20,7 +20,9 @@ module.exports = {
 		'plugin:react-prefer-function-component/recommended',
 		'plugin:security/recommended',
 		'plugin:@next/next/recommended',
+		'plugin:@typescript-eslint/recommended',
 	],
+	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true,
@@ -35,6 +37,7 @@ module.exports = {
 		'security',
 		'sort-class-members',
 		'unused-imports',
+		'@typescript-eslint',
 	],
 	rules: {
 		// eslint
