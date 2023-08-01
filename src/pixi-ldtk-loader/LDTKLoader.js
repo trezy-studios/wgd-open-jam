@@ -179,7 +179,10 @@ export const LDTKLoader = {
 			while (layerIndex < levelMeta.layerInstances.length) {
 				const layerData = levelMeta.layerInstances[layerIndex]
 
-				const layer = { name: layerData.__identifier }
+				const layer = {
+					iid: layerData.iid,
+					name: layerData.__identifier,
+				}
 
 				if (['IntGrid', 'Tiles'].includes(layerData.__type)) {
 					const tilesetID = layerData.__tilesetDefUid
@@ -217,11 +220,10 @@ export const LDTKLoader = {
 						})
 					})
 				} else if (layerData.__type === 'Entities') {
-					layer.entities = []
-
-					layerData.entityInstances.forEach(entityInstance => {
+					layer.entities = layerData.entityInstances.map(entityInstance => {
 						const entity = {
 							height: entityInstance.height,
+							iid: entityInstance.iid,
 							name: entityInstance.__identifier,
 							position: {
 								x: entityInstance.px[0],
@@ -235,7 +237,7 @@ export const LDTKLoader = {
 							entity[fieldInstance.__identifier] = fieldInstance.__value
 						})
 
-						layer.entities.push(entity)
+						return entity
 					})
 				}
 
