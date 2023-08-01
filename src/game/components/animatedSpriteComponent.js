@@ -36,7 +36,7 @@ import { store } from '../../store/store.js'
  * @param {string} config.spritesheetName The name of the source spritesheet.
  * @returns {SpriteState} The entity's sprite state.
  */
-export function spriteComponent(config) {
+export function animatedSpriteComponent(config) {
 	const { viewport } = store.state
 
 	const {

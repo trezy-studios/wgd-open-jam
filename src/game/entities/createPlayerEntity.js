@@ -1,6 +1,13 @@
+// Module imports
+import { Container } from 'pixi.js'
+
+
+
+
+
 // Local imports
+import { animatedSpriteComponent } from '../components/animatedSpriteComponent.js'
 import { createActorEntity } from './createActorEntity.js'
-import { spriteComponent } from '../components/spriteComponent.js'
 import { store } from '../../store/store.js'
 
 
@@ -18,14 +25,17 @@ import { store } from '../../store/store.js'
 export function createPlayerEntity(x, y, container) {
 	const { viewport } = store.state
 
+	const spriteContainer = new Container
 	const player = createActorEntity(x, y, {
 		isPlayer: true,
-		...spriteComponent({
+		...animatedSpriteComponent({
 			defaultAnimationName: 'idle-south',
-			spriteContainer: container,
+			spriteContainer,
 			spritesheetName: 'player-spritesheet',
 		}),
 	})
+
+	container.addChild(spriteContainer)
 
 	player.size.height = player.sprite.sprite.height
 	player.size.width = player.sprite.sprite.width
