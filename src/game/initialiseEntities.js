@@ -9,6 +9,7 @@ import { Assets } from 'pixi.js'
 import { createCollider } from './physics/createCollider.js'
 import { createSpawnEntity } from './entities/createSpawnEntity.js'
 import { createStaticBody } from './physics/createRigidBody.js'
+import { createTriggerEntity } from './entities/createTriggerEntity.js'
 import { store } from '../store/store.js'
 
 
@@ -31,15 +32,6 @@ export function initialiseEntities() {
 
 			layer.entities.forEach(entity => {
 				switch (entity.EntityType) {
-					case 'Spawn':
-						createSpawnEntity(
-							entity.position.x,
-							entity.position.y,
-							entity.SpawnType,
-							layerContainer,
-						)
-						break
-
 					case 'Collision': {
 						const staticBody = createStaticBody(
 							(entity.position.x) + (entity.width / 2),
@@ -52,6 +44,19 @@ export function initialiseEntities() {
 						}, staticBody)
 						break
 					}
+
+					case 'Spawn':
+						createSpawnEntity(
+							entity.position.x,
+							entity.position.y,
+							entity.SpawnType,
+							layerContainer,
+						)
+						break
+
+					case 'Trigger':
+						createTriggerEntity(entity, layerContainer)
+						break
 
 					default:
 				}
