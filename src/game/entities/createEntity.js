@@ -17,10 +17,8 @@ import { store } from '../../store/store.js'
 export function createEntity(x, y, components = {}) {
 	const { world } = store.state
 
-	const entity = world.add({
+	return world.add({
 		...position(x, y),
 		...components,
 	})
-
-	return entity
 }

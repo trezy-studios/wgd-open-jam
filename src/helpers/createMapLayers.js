@@ -16,31 +16,41 @@ import {
  * @returns {null | Container} A Pixi container containing all tiles and/or sub layers.
  */
 export function createMapLayers(mapData, targetContainer) {
-	const { layers } = mapData.levels[0]
+	const layerCache = {}
 
-	layers.forEach(layer => {
-		const container = new Container
+	const { levels } = mapData
 
-		container.name = layer.name
+	levels.forEach(level => {
+		const { layers } = level
 
-		if (layer.tiles?.length) {
-			layer.tiles.forEach(tile => {
-				if (!tile?.texture) {
-					// console.warn('Attempted to load tile which has no texture')
-					return
-				}
+		layers.forEach(layer => {
+			let layerContainer = layerCache[layer.name]
 
-				const sprite = new Sprite(tile.texture)
+			if (!layerContainer) {
+				layerContainer = new Container
+				layerContainer.name = layer.name
+				layerCache[layer.name] = layerContainer
+			}
 
-				sprite.x = tile.position.x * tile.width
-				sprite.y = tile.position.y * tile.height
+			if (layer.tiles?.length) {
+				layer.tiles.forEach(tile => {
+					if (!tile?.texture) {
+						// console.warn('Attempted to load tile which has no texture')
+						return
+					}
 
-				container.addChild(sprite)
-			})
-		}
+					const sprite = new Sprite(tile.texture)
 
-		targetContainer.addChild(container)
+					sprite.x = (tile.position.x * tile.width) + level.worldPosition.x
+					sprite.y = (tile.position.y * tile.height) + level.worldPosition.y
+
+					layerContainer.addChild(sprite)
+				})
+			}
+
+			targetContainer.addChild(layerContainer)
+		})
+
+		return targetContainer
 	})
-
-	return targetContainer
 }

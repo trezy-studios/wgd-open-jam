@@ -1,6 +1,7 @@
 // Local imports
 import { createEntity } from './createEntity.js'
 import { sensorComponent } from '../components/sensorComponent.js'
+import { store } from '../../store/store.js'
 
 
 
@@ -9,24 +10,32 @@ import { sensorComponent } from '../components/sensorComponent.js'
 /**
  * Creates a new entity representing a trigger.
  *
- * @param {number} entity The trigger entity.
+ * @param {number} mapEntity The trigger entity.
  * @param {object} components Additional components to be attached to the created entity.
  * @returns {object} The new entity.
  */
-export function createTriggerEntity(entity, components = {}) {
+export function createTriggerEntity(mapEntity, level, components = {}) {
 	const {
 		height,
 		position,
 		width,
+	} = mapEntity
 	} = entity
 
-	return createEntity(position.x, position.y, {
+	const entity = createEntity(position.x, position.y, {
 		...sensorComponent({
 			height: height,
 			width: width,
-			x: position.x,
-			y: position.y,
+			x: position.x + level.worldPosition.x,
+			y: position.y + level.worldPosition.y,
 		}),
+		triggerData: {
+			teleportDestination: mapEntity.TeleportDestination,
+			triggerAction: mapEntity.TriggerAction,
+			triggerCondition: mapEntity.TriggerCondition,
+		},
 		...components,
 	})
+
+	return entity
 }

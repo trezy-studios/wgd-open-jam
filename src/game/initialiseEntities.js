@@ -24,44 +24,46 @@ export function initialiseEntities() {
 
 	const mapData = Assets.get('world')
 
-	const level = mapData.levels[0]
+	const { levels } = mapData
 
-	level.layers.forEach((layer, layerIndex) => {
-		if (layer.entities) {
-			const layerContainer = viewport.getChildAt(layerIndex)
+	levels.forEach(level => {
+		level.layers.forEach((layer, layerIndex) => {
+			if (layer.entities) {
+				const layerContainer = viewport.getChildAt(layerIndex)
 
-			layer.entities.forEach(entity => {
-				switch (entity.EntityType) {
-					case 'Collision': {
-						const staticBody = createStaticBody(
-							(entity.position.x) + (entity.width / 2),
-							(entity.position.y) + (entity.height / 2),
-						)
+				layer.entities.forEach(entity => {
+					switch (entity.EntityType) {
+						case 'Collision': {
+							const staticBody = createStaticBody(
+								(entity.position.x) + (entity.width / 2) + level.worldPosition.x,
+								(entity.position.y) + (entity.height / 2) + level.worldPosition.y,
+							)
 
-						createCollider('rectangle', {
-							height: entity.height,
-							width: entity.width,
-						}, staticBody)
-						break
+							createCollider('rectangle', {
+								height: entity.height,
+								width: entity.width,
+							}, staticBody)
+							break
+						}
+
+						case 'Spawn':
+							createSpawnEntity(
+								entity.position.x,
+								entity.position.y,
+								entity.SpawnType,
+								layerContainer,
+							)
+							break
+
+						case 'Trigger':
+							createTriggerEntity(entity, level)
+							break
+
+						default:
 					}
-
-					case 'Spawn':
-						createSpawnEntity(
-							entity.position.x,
-							entity.position.y,
-							entity.SpawnType,
-							layerContainer,
-						)
-						break
-
-					case 'Trigger':
-						createTriggerEntity(entity, layerContainer)
-						break
-
-					default:
-				}
-			})
-		}
+				})
+			}
+		})
 	})
 
 	store.set(() => ({ isEntitiesInitialised: true }))
