@@ -20,7 +20,7 @@ export function createTriggerEntity(mapEntity, level, components = {}) {
 		position,
 		width,
 	} = mapEntity
-	} = entity
+	const { colliderMap } = store.state
 
 	const entity = createEntity(position.x, position.y, {
 		...sensorComponent({
@@ -36,6 +36,8 @@ export function createTriggerEntity(mapEntity, level, components = {}) {
 		},
 		...components,
 	})
+
+	colliderMap.set(entity.collider, entity)
 
 	return entity
 }

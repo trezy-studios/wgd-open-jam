@@ -15,6 +15,9 @@ export const store = makeStore({
 	/** @type {null | object} */
 	camera: null,
 
+	/** @type {object} */
+	colliderMap: new Map,
+
 	/** @type {null | import('@hmans/controlfreak').Controller} */
 	controller: null,
 

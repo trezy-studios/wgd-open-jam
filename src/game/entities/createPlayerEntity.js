@@ -23,7 +23,10 @@ import { store } from '../../store/store.js'
  * @returns {object} The new entity.
  */
 export function createPlayerEntity(x, y, container) {
-	const { viewport } = store.state
+	const {
+		colliderMap,
+		viewport,
+	} = store.state
 
 	const spriteContainer = new Container
 	const player = createActorEntity(x, y, {
@@ -45,6 +48,8 @@ export function createPlayerEntity(x, y, container) {
 		radius: 50,
 		speed: 50,
 	})
+
+	colliderMap.set(player.collisionBody, player)
 
 	store.set(() => ({ player }))
 
