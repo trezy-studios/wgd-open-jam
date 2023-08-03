@@ -10,6 +10,7 @@ import { store } from '../../store/store.js'
 /** Moves entities based on their velocity. */
 export function physicsSystem() {
 	const {
+		colliderMap,
 		physicsWorld,
 		physicsEvents,
 	} = store.state
@@ -26,9 +27,11 @@ export function physicsSystem() {
 
 	for (const entity of getCollidableEntities()) {
 		physicsWorld.intersectionsWith(entity.collisionBody.collider, otherCollider => {
+			const otherEntity = colliderMap.get(otherCollider)
+
 			console.log('Detected intersection between:', [
-				entity.collisionBody.collider,
-				otherCollider,
+				entity,
+				otherEntity,
 			])
 		})
 	}
