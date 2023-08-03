@@ -1,6 +1,8 @@
 // Local imports
 import styles from './GameUI.module.scss'
 
+import { InventoryManager } from '../InventoryManager/InventoryManager.jsx'
+
 
 
 
@@ -12,6 +14,8 @@ import styles from './GameUI.module.scss'
  */
 export function GameUI() {
 	return (
-		<div className={styles['game-ui-wrapper']} />
+		<div className={styles['game-ui-wrapper']}>
+			<InventoryManager />
+		</div>
 	)
 }

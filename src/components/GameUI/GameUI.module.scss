@@ -1,1 +1,6 @@
-.game-ui-wrapper {}
+.game-ui-wrapper {
+	display: grid;
+	inset: 0;
+	pointer-events: none;
+	position: absolute;
+}

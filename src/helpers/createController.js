@@ -1,6 +1,6 @@
 // Module imports
 import {
-	// BooleanControl,
+	BooleanControl,
 	Controller,
 	GamepadDevice,
 	KeyboardDevice,
@@ -36,19 +36,19 @@ export function createController() {
 		.addStep(processors.clampVector(1))
 		.addStep(processors.deadzone(0.15))
 
-	// controller
-	//   .addControl('fire', BooleanControl)
-	//   .addStep(keyboard.whenKeyPressed(['Space', 'Enter']))
-	//   .addStep(gamepad.whenButtonPressed(0))
+	controller
+		.addControl('inventory', BooleanControl)
+		.addStep(keyboard.whenKeyPressed(['KeyI']))
+		// .addStep(gamepad.whenButtonPressed(0))
 
 	// controller
-	//   .addControl('aim', VectorControl)
-	//   .addStep(
-	//     keyboard.compositeVector('ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight')
-	//   )
-	//   .addStep(gamepad.axisVector(2, 3))
-	//   .addStep(processors.deadzone(0.15))
-	//   .addStep(processors.normalizeVector)
+	// 	.addControl('aim', VectorControl)
+	// 	.addStep(
+	// 		keyboard.compositeVector('ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight')
+	// 	)
+	// 	.addStep(gamepad.axisVector(2, 3))
+	// 	.addStep(processors.deadzone(0.15))
+	// 	.addStep(processors.normalizeVector)
 
 	controller.onDeviceChange.add(device => console.log('new device:', device))
 

@@ -28,6 +28,9 @@ export const store = makeStore({
 	isInitialising: false,
 
 	/** @type {boolean} */
+	isInventoryManagerOpen: false,
+
+	/** @type {boolean} */
 	isLoadingAssets: false,
 
 	/** @type {boolean} */
