@@ -11,6 +11,7 @@ import { store } from '../../store/store.js'
  * Creates a new entity representing a trigger.
  *
  * @param {number} mapEntity The trigger entity.
+ * @param {object} level The level data.
  * @param {object} components Additional components to be attached to the created entity.
  * @returns {object} The new entity.
  */

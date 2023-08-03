@@ -13,7 +13,6 @@ import {
  *
  * @param {object} mapData The map to create layers from.
  * @param {Container} targetContainer The container into which new layers will be rendered.
- * @returns {null | Container} A Pixi container containing all tiles and/or sub layers.
  */
 export function createMapLayers(mapData, targetContainer) {
 	const layerCache = {}
