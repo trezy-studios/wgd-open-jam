@@ -15,6 +15,7 @@ import { Spritesheet } from '@pixi/spritesheet'
 
 // Local imports
 import { Convert } from './quicktype.ts'
+import { getTileTextureFromTileset } from '../helpers/getTileTextureFromTileset.js'
 import * as path from './path.js'
 
 
@@ -114,7 +115,7 @@ export const LDTKLoader = {
 				const column = tileIndex % columnCount
 				const row = Math.floor(tileIndex / columnCount)
 
-				atlas.frames[tileIndex] = {
+				atlas.frames[`${tileset.id}::${tileIndex}`] = {
 					frame: {
 						h: tilesetData.tileGridSize,
 						w: tilesetData.tileGridSize,
@@ -214,7 +215,7 @@ export const LDTKLoader = {
 								height: tileset.tile.height,
 								width: tileset.tile.width,
 							},
-							texture: tileset.spritesheet.textures[tileID],
+							texture: getTileTextureFromTileset(tileID, tileset),
 							tilesetID,
 							width: tileset.tile.width,
 						})
