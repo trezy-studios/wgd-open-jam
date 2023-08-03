@@ -10,7 +10,7 @@
 	transition-property: opacity;
 
 	&.is-visible {
-		pointer-events: none;
+		pointer-events: initial;
 		opacity: 1;
 	}
 

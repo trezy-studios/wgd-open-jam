@@ -29,13 +29,24 @@ export function createPlayerEntity(x, y, container) {
 	} = store.state
 
 	const spriteContainer = new Container
-	const player = createActorEntity(x, y, {
-		isPlayer: true,
-		...animatedSpriteComponent({
-			defaultAnimationName: 'idle-south',
-			spriteContainer,
-			spritesheetName: 'player-spritesheet',
-		}),
+	const player = createActorEntity({
+		components: {
+			isPlayer: true,
+			...animatedSpriteComponent({
+				defaultAnimationName: 'idle-south',
+				spriteContainer,
+				spritesheetName: 'player-spritesheet',
+			}),
+		},
+		inventory: {
+			contents: [
+				{
+					name: 'Sword',
+				},
+			],
+		},
+		x,
+		y,
 	})
 
 	container.addChild(spriteContainer)
