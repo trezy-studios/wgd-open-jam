@@ -16,12 +16,12 @@ import { velocity } from '../components/velocity.js'
  *
  * @param {object} config Configuration for the entity.
  * @param {object} config.components Additional components to be attached to the created entity.
- * @param {number} config.inventory The entity's initial inventory.
+ * @param {object} config.inventory The entity's initial inventory.
  * @param {number} config.x The entity's initial X position.
  * @param {number} config.y The entity's initial X position.
  * @returns {object} The new entity.
  */
-export function createActorEntity(config = {}) {
+export function createActorEntity(config) {
 	const {
 		components = {},
 		inventory,

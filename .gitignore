@@ -6,6 +6,7 @@ public/assets/minifantasy
 .env
 .env.build
 .env.local
+next-env.d.ts
 yarn-error.log
 *.tiled-session
 .vercel/

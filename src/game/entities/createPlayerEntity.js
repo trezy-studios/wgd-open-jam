@@ -8,6 +8,7 @@ import { Container } from 'pixi.js'
 // Local imports
 import { animatedSpriteComponent } from '../components/animatedSpriteComponent.js'
 import { createActorEntity } from './createActorEntity.js'
+import { Item } from '../structures/Item.js'
 import { store } from '../../store/store.js'
 
 
@@ -39,11 +40,10 @@ export function createPlayerEntity(x, y, container) {
 			}),
 		},
 		inventory: {
-			contents: [
-				{
-					name: 'Sword',
-				},
-			],
+			contents: {
+				0: new Item('sword'),
+				3: new Item('axe'),
+			},
 		},
 		x,
 		y,

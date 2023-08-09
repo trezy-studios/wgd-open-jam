@@ -1,5 +1,10 @@
 // Module imports
-import { useMemo } from 'react'
+import {
+	useCallback,
+	useEffect,
+	useMemo,
+	useState,
+} from 'react'
 
 
 
@@ -8,6 +13,8 @@ import { useMemo } from 'react'
 // Local imports
 import styles from './InventoryManager.module.scss'
 
+import { InventoryItem } from './InventoryItem.jsx'
+import { InventorySlot } from './InventorySlot.jsx'
 import { Overlay } from '../Overlay/Overlay.jsx'
 import { store } from '../../store/store.js'
 import { useStore } from 'statery'
@@ -27,41 +34,57 @@ export function InventoryManager() {
 		player,
 	} = useStore(store)
 
+	const [shouldUpdate, setShouldUpdate] = useState(null)
+
+	const forceUpdate = useCallback(() => setShouldUpdate({}), [setShouldUpdate])
+
 	const contentsGrid = useMemo(() => {
 		const slots = []
 
-		if (player) {
-			while (slots.length < player.inventory.capacity) {
-				const cellIndex = slots.length
-				const item = player.inventory.contents[cellIndex]
-				let slotContents = null
+		while (slots.length < player.inventory.capacity) {
+			const slotIndex = slots.length
+			const item = player.inventory.getItem(slotIndex)
+			let slotContents = null
 
-				if (item) {
-					slotContents = (
-						<div className={styles['item']}>
-							{item.name}
-						</div>
-					)
-				}
-
-				slots.push((
-					<div
-						key={cellIndex}
-						className={styles['slot']}>
-						{slotContents}
-					</div>
-				))
+			if (item) {
+				slotContents = (
+					<InventoryItem
+						currentSlot={slotIndex}
+						item={item} />
+				)
 			}
 
-			return slots
+			slots.push((
+				<InventorySlot
+					key={slotIndex}
+					slotIndex={slotIndex}>
+					{slotContents}
+				</InventorySlot>
+			))
 		}
 
 		return slots
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
 		player,
-		player?.inventory.capacity,
-		player?.inventory.contents,
+		shouldUpdate,
+	])
+
+	useEffect(() => {
+		const { inventory } = player
+
+		inventory.on('item added', forceUpdate)
+		inventory.on('items moved', forceUpdate)
+		inventory.on('item removed', forceUpdate)
+
+		return () => {
+			inventory.off('item added', forceUpdate)
+			inventory.off('items moved', forceUpdate)
+			inventory.off('item removed', forceUpdate)
+		}
+	}, [
+		forceUpdate,
+		player,
 	])
 
 	return (

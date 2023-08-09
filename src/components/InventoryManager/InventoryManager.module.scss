@@ -17,8 +17,17 @@
 
 	background-color: rgba(black, 0.2);
 	height: calc(var(--slot-size) * 4);
+	outline-color: transparent;
+	outline-style: solid;
+	outline-width: 4px;
 	position: relative;
+	transition-duration: 0.1s;
+	transition-property: outline-color;
 	width: calc(var(--slot-size) * 4);
+
+	&.is-hovered {
+		outline-color: green;
+	}
 
 	.item {
 		align-items: center;
@@ -29,10 +38,16 @@
 		justify-content: center;
 		position: absolute;
 		transition-duration: 0.1s;
-		transition-property: background-color;
+		transition-property:
+			background-color,
+			opacity;
 
 		&:hover {
 			background-color: rgba(black, 0.2);
+		}
+
+		&.is-dragging {
+			opacity: 0.3;
 		}
 	}
 }
