@@ -2,7 +2,7 @@
  * Retrieves the base name of the path's target. This could be either a directory name or a file name.
  *
  * @param {string} path The path from which to extract a base name.
- * @param {string} extension An extension to be removed from the base name.
+ * @param {string} [extension] An extension to be removed from the base name.
  * @returns {string} The parsed base name.
  */
 export function basename(path, extension) {
@@ -12,7 +12,7 @@ export function basename(path, extension) {
 
 	if (extension) {
 		// eslint-disable-next-line security/detect-non-literal-regexp
-		target = target.replace(new RegExp(extension.replace('.', '\\.', ''), 'u'))
+		target = target.replace(new RegExp(extension.replace('.', '\\.'), 'u'), '')
 	}
 
 	return target.replace(/\/+$/u, '')

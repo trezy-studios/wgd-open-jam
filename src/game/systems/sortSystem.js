@@ -1,7 +1,7 @@
 // Local imports
-import { getRenderableEntities } from '../entities/selectors/getRenderableEntities.js'
-import { quicksort } from '../../helpers/quicksort.js'
-import { store } from '../../store/store.js'
+// import { getRenderableEntities } from '../entities/selectors/getRenderableEntities.js'
+// import { quicksort } from '../../helpers/quicksort.js'
+// import { store } from '../../store/store.js'
 
 
 
@@ -11,16 +11,16 @@ import { store } from '../../store/store.js'
  * Sorts all entities by their y position.
  */
 export function sortSystem() {
-	const entitiesToSort = getRenderableEntities()
+	// const entitiesToSort = getRenderableEntities()
 
-	const entityRenderOrder = Array(entitiesToSort.size)
-		.fill(null)
-		.map((_, index) => index)
+	// const entityRenderOrder = Array(entitiesToSort.size)
+	// 	.fill(null)
+	// 	.map((_, index) => index)
 
-	quicksort(entityRenderOrder, entityIndex => {
-		const entity = entitiesToSort.entities[entityIndex]
-		return entity.position.y
-	})
+	// quicksort(entityRenderOrder, entityIndex => {
+	// 	const entity = entitiesToSort.entities[entityIndex]
+	// 	return entity.position.y
+	// })
 
-	store.set(() => ({ entityRenderOrder }))
+	// store.set(() => ({ entityRenderOrder }))
 }

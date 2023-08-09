@@ -48,7 +48,7 @@ function buildCircleCollider(radius) {
  *
  * @param {string} shape Shape of the collider to build (circle | rectangle)
  * @param {object} config Configuration of the collider (width, height, radius, etc)
- * @param {RAPIER.RigidBody} parentRigidBody RigidBody to attach this collider to; optional
+ * @param {RAPIER.RigidBody} [parentRigidBody] RigidBody to attach this collider to; optional
  * @returns {RAPIER.Collider} Rapier collider object
  */
 export function createCollider(shape, config, parentRigidBody) {
