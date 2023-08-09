@@ -69,7 +69,7 @@ export function InventorySlot(props) {
 
 	const compiledClassName = useMemo(() => {
 		return classnames({
-			[styles['is-hovered']]: isHovered,
+			[styles['is-drop-target']]: isHovered,
 			[styles['slot']]: true,
 		})
 	}, [isHovered])
