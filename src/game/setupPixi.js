@@ -11,7 +11,7 @@ import {
 
 
 // Local imports
-import { LDTKLoader } from '../pixi-ldtk-loader/LDTKLoader.js'
+import { LDTKLoader } from '../pixi-ldtk-loader'
 import { store } from '../store/store.js'
 
 
