@@ -2,7 +2,7 @@
 import { parseTileset } from './parseTileset.js'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as types from '../types.js'
+import * as types from './types.js'
 
 
 
@@ -14,7 +14,7 @@ import * as types from '../types.js'
  * @param {object} config All configs.
  * @param {string} config.assetBasePath The base path from which tilesets will be loaded.
  * @param {import('@pixi/assets').Loader} config.loader The Pixi loader.
- * @param {import('../quicktype.js').TilesetDefinition[]} config.sourceData LDtk source data.
+ * @param {import('./quicktype.js').TilesetDefinition[]} config.sourceData LDtk source data.
  * @returns {Promise<types.ParsedTilesetMap>} A map of tilesets.
  */
 export async function parseTilesets(config) {

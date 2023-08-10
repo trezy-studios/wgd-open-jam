@@ -7,7 +7,7 @@ import { settings } from '@pixi/core'
 
 // Local imports
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as types from '../types.js'
+import * as types from './types.js'
 
 import { parseLayers } from './parseLayers.js'
 import path from 'path'
@@ -21,7 +21,7 @@ import path from 'path'
  *
  * @param {object} config All configs.
  * @param {string} config.assetBasePath The base path from which the level will be loaded.
- * @param {import('../quicktype.js').Level} config.sourceData Level data from the LDtk source.
+ * @param {import('./quicktype.js').Level} config.sourceData Level data from the LDtk source.
  * @param {types.ParsedTilesetMap} config.tilesets Tilesets that have been loaded from the LDtk source.
  * @returns {Promise<types.LDTKLevel>} The parsed level.
  */

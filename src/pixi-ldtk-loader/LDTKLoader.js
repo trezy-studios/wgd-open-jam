@@ -13,13 +13,13 @@ import {
 
 
 // Local imports
-import { Convert } from './quicktype.ts'
+import { Convert } from './helpers/quicktype.ts'
 import { parseLevels } from './helpers/parseLevels.js'
 import { parseTilesets } from './helpers/parseTilesets.js'
 import * as path from './path.js'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as types from './types.js'
+import * as types from './helpers/types.js'
 
 
 
@@ -63,6 +63,7 @@ export const LDTKLoader = {
 			levels: [],
 			meta: {
 				app: ldtkJSON.__header__.app,
+				original: ldtkJSON,
 				version: ldtkJSON.__header__.appVersion,
 			},
 			tilesets: await parseTilesets({

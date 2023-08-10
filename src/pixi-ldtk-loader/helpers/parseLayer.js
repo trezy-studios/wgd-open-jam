@@ -3,7 +3,7 @@ import { parseEntities } from './parseEntities.js'
 import { parseTiles } from './parseTiles.js'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as types from '../types.js'
+import * as types from './types.js'
 
 
 
@@ -13,7 +13,7 @@ import * as types from '../types.js'
  * Parses a layer from LDtk source data.
  *
  * @param {object} config All configs.
- * @param {import('../quicktype.js').LayerInstance} config.sourceData Layer data from LDtk source.
+ * @param {import('./quicktype.js').LayerInstance} config.sourceData Layer data from LDtk source.
  * @param {types.ParsedTilesetMap} config.tilesets Tilesets that have been loaded from the LDtk source.
  * @returns {types.LDTKLevelLayer} The parsed layer.
  */

@@ -65,6 +65,7 @@
  * @property {object[]} levels An array of levels.
  * @property {object} meta Metadata about the generated data.
  * @property {string} meta.app The app used to generate the data.
+ * @property {import('./quicktype.ts').Coordinate} meta.original The original JSON from the LDtk file.
  * @property {string} meta.version The version of the app that was used to generate the data.
  * @property {ParsedTilesetMap} tilesets A mapping of tileset IDs to tilesets.
  */
