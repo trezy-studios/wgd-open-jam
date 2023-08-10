@@ -4,7 +4,6 @@ import {
 	BaseTexture,
 	extensions,
 	SCALE_MODES,
-	settings,
 } from 'pixi.js'
 
 
@@ -28,11 +27,6 @@ export function setupPixi() {
 	if (!pixiApp) {
 		// Render pixel art properly.
 		BaseTexture.defaultOptions.scaleMode = SCALE_MODES.NEAREST
-
-		// Set options for pixi-tilemap.
-		settings.TEXTILE_UNITS = 4
-		settings.TEXTURES_PER_TILEMAP = 4
-		settings.use32bitIndex = true
 
 		extensions.add(LDTKLoader)
 
