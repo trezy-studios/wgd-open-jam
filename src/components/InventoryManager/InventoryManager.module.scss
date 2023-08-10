@@ -1,0 +1,64 @@
+.inventory-manager {
+	background-color: brown;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 2rem;
+}
+
+.contents {
+	display: grid;
+	gap: 0.5rem;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.slot {
+	--slot-size: 12px;
+
+	background-color: rgba(black, 0.2);
+	border-radius: 4px;
+	height: calc(var(--slot-size) * 4);
+	overflow: hidden;
+	position: relative;
+	transition-duration: 0.5s;
+	transition-property: box-shadow;
+	width: calc(var(--slot-size) * 4);
+
+	&:after {
+		--box-shadow-opacity: 0;
+
+		box-shadow: 0 0 16px 0 rgba(black, var(--box-shadow-opacity)) inset;
+		content: '';
+		inset: 0;
+		position: absolute;
+	}
+
+	&:hover:not(:empty):not(.is-drop-target):after,
+	&.is-drop-target:after {
+		--box-shadow-opacity: 0.5;
+	}
+
+	&.is-drop-target:after {
+		content: '';
+		inset: 0;
+		position: absolute;
+	}
+
+	.item {
+		align-items: center;
+		cursor: pointer;
+		display: flex;
+		filter: saturate(1);
+		inset: 0;
+		justify-content: center;
+		position: absolute;
+		transition-duration: 0.1s;
+		transition-property:
+			background-color,
+			filter;
+
+		&.is-dragging {
+			filter: saturate(0);
+		}
+	}
+}

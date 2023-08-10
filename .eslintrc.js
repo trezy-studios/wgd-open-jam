@@ -176,6 +176,9 @@ module.exports = {
 		'jsdoc/require-returns': ['error', {
 			exemptedBy: ['component'],
 		}],
+		'jsdoc/tag-lines': ['error', 'never', {
+			startLines: 1,
+		}],
 
 		// react
 		'react/boolean-prop-naming': ['error'],

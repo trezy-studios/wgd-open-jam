@@ -13,7 +13,7 @@ import { spriteContainer } from '../components/spriteContainer.js'
  * @param {number} x The entity's initial X position.
  * @param {number} y The entity's initial X position.
  * @param {string} type What type of spawn this should be.
- * @param {import('pixi.js').Container} container A container for spawn sprites.
+ * @param {import('pixi.js').DisplayObject} container A container for spawn sprites.
  * @param {object} components Additional components to be attached to the created entity.
  * @returns {object} The new entity.
  */

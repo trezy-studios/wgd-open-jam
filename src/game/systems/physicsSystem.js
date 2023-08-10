@@ -36,5 +36,5 @@ export function physicsSystem() {
 		})
 	}
 
-	renderPhysicsDebug(physicsWorld)
+	renderPhysicsDebug()
 }

@@ -1,7 +1,7 @@
 /**
  * Retrieves the texture for a tile from a tileset.
  *
- * @param {string} tileID The ID of the tile.
+ * @param {number | string} tileID The ID of the tile.
  * @param {*} tileset The tileset to retrieve the texture from.
  * @returns {import('pixi.js').Texture} The tile texture.
  */

@@ -1,0 +1,28 @@
+.overlay {
+	align-content: center;
+	align-items: center;
+	display: flex;
+	inset: 0;
+	justify-content: center;
+	position: absolute;
+	opacity: 0;
+	transition-duration: 0.2s;
+	transition-property: opacity;
+
+	&.is-visible {
+		pointer-events: initial;
+		opacity: 1;
+	}
+
+	* {
+		position: relative;
+		z-index: 1;
+	}
+
+	.overlay-background {
+		background-color: rgba(black, 0.8);
+		inset: 0;
+		position: absolute;
+		z-index: 0;
+	}
+}

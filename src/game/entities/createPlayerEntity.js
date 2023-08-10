@@ -8,6 +8,7 @@ import { Container } from 'pixi.js'
 // Local imports
 import { animatedSpriteComponent } from '../components/animatedSpriteComponent.js'
 import { createActorEntity } from './createActorEntity.js'
+import { Item } from '../structures/Item.js'
 import { store } from '../../store/store.js'
 
 
@@ -29,13 +30,23 @@ export function createPlayerEntity(x, y, container) {
 	} = store.state
 
 	const spriteContainer = new Container
-	const player = createActorEntity(x, y, {
-		isPlayer: true,
-		...animatedSpriteComponent({
-			defaultAnimationName: 'idle-south',
-			spriteContainer,
-			spritesheetName: 'player-spritesheet',
-		}),
+	const player = createActorEntity({
+		components: {
+			isPlayer: true,
+			...animatedSpriteComponent({
+				defaultAnimationName: 'idle-south',
+				spriteContainer,
+				spritesheetName: 'player-spritesheet',
+			}),
+		},
+		inventory: {
+			contents: {
+				0: new Item('sword'),
+				3: new Item('axe'),
+			},
+		},
+		x,
+		y,
 	})
 
 	container.addChild(spriteContainer)

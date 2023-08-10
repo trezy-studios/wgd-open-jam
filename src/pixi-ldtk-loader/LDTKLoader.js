@@ -22,6 +22,32 @@ import * as path from './path.js'
 
 
 
+/**
+ * @typedef {object} LDTKTileset
+ * @property {number} id The tileset ID.
+ * @property {object} meta Metadata about the tileset.
+ * @property {number} meta.columnCount The number of columns in the tileset.
+ * @property {number} meta.rowCount The number of rows in the tileset.
+ * @property {number} meta.tileCount The number of tiles in the tileset.
+ * @property {null} spritesheet The number of tiles in the tileset.
+ * @property {object} tile Global tile information.
+ * @property {number} tile.height The height of tiles.
+ * @property {number} tile.width The width of tiles.
+ */
+
+/**
+ * @typedef {object} LDTKObject
+ * @property {object[]} levels An array of levels.
+ * @property {object} meta Metadata about the generated data.
+ * @property {string} meta.app The app used to generate the data.
+ * @property {string} meta.version The version of the app that was used to generate the data.
+ * @property {{ [key: string]: LDTKTileset }} tilesets A mapping of tileset IDs to tilesets.
+ */
+
+
+
+
+
 /** @type {import('@pixi/assets').LoaderParser} */
 export const LDTKLoader = {
 	extension: {
@@ -45,7 +71,7 @@ export const LDTKLoader = {
 	 * @param {string} url The URL of the TMX file.
 	 * @param {import('@pixi/assets').LoadAsset} asset The TMX file asset.
 	 * @param {import('@pixi/assets').Loader} loader The loader being used to load this asset.
-	 * @returns {import('@pixi/assets').Texture | import('@pixi/assets').Texture[]} The loaded textures.
+	 * @returns {Promise<*>} The loaded textures.
 	 */
 	async load(url, asset, loader) {
 		const response = await settings.ADAPTER.fetch(url)
@@ -53,6 +79,7 @@ export const LDTKLoader = {
 		const ldtkText = await response.text()
 		const ldtkJSON = Convert.toCoordinate(ldtkText)
 
+		/** @type {LDTKObject} */
 		const ldtkObject = {
 			levels: [],
 			meta: {
@@ -94,16 +121,19 @@ export const LDTKLoader = {
 				},
 			}
 
+			/** @type {import('pixi.js').ISpritesheetData} */
 			const atlas = {
 				frames: {},
 				meta: {
-					image: tilesetSrc,
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					// @ts-ignore
 					format: 'RGBA8888',
+					image: tilesetSrc,
 					size: {
 						h: tilesetData.pxHei,
 						w: tilesetData.pxWid,
 					},
-					scale: 1,
+					scale: '1',
 				},
 				animations: {},
 			}
@@ -127,6 +157,8 @@ export const LDTKLoader = {
 						w: tilesetData.tileGridSize,
 					},
 					spriteSourceSize: {
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+						// @ts-ignore
 						h: tilesetData.tileGridSize,
 						w: tilesetData.tileGridSize,
 						x: 0,
@@ -167,7 +199,7 @@ export const LDTKLoader = {
 			if (levelMeta.externalRelPath) {
 				const levelSrc = path.join(assetBasePath, levelMeta.externalRelPath)
 
-				const levelResponse = levelMeta = await settings.ADAPTER.fetch(levelSrc)
+				const levelResponse = await settings.ADAPTER.fetch(levelSrc)
 				levelMeta = await levelResponse.json()
 
 				ldtkJSON.levels[levelIndex] = levelMeta

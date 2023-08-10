@@ -1,5 +1,7 @@
 // Module imports
+import { DndProvider } from 'react-dnd'
 import dynamic from 'next/dynamic'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 
 
@@ -22,6 +24,8 @@ const Game = dynamic(() => {
  */
 export function GamePage() {
 	return (
-		<Game />
+		<DndProvider backend={HTML5Backend}>
+			<Game />
+		</DndProvider>
 	)
 }
