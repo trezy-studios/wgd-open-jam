@@ -19,7 +19,7 @@
     "classnames": "^2.3.2",
     "miniplex": "^2.0.0-next.20",
     "next": "^13.4.13",
-    "pixi-ldtk-loader": "^2.0.0-alpha.1",
+    "pixi-ldtk-loader": "^2.1.0",
     "pixi-viewport": "^5.0.1",
     "pixi.js": "^7.2.4",
     "prop-types": "^15.8.1",
