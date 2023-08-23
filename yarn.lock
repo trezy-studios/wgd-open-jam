@@ -4303,6 +4303,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pixi-ldtk-loader@npm:^2.0.0-alpha.1":
+  version: 2.0.0-alpha.1
+  resolution: "pixi-ldtk-loader@npm:2.0.0-alpha.1"
+  peerDependencies:
+    "@pixi/assets": ^7.2.4
+    "@pixi/core": ^7.2.4
+    "@pixi/spritesheet": ^7.2.4
+    "@pixi/utils": ^7.2.4
+  checksum: f3f0f0bf978da82064f660c4840b5891d34f75571d8072a4bd161fa21b5a2046b7aa18f286888da9cbdda48a9e02549071b9d17cdbccf43e10aa42ddd2946d24
+  languageName: node
+  linkType: hard
+
 "pixi-viewport@npm:^5.0.1":
   version: 5.0.1
   resolution: "pixi-viewport@npm:5.0.1"
@@ -5651,6 +5663,7 @@ __metadata:
     eslint-plugin-unused-imports: ^3.0.0
     miniplex: ^2.0.0-next.20
     next: ^13.4.13
+    pixi-ldtk-loader: ^2.0.0-alpha.1
     pixi-viewport: ^5.0.1
     pixi.js: ^7.2.4
     prop-types: ^15.8.1

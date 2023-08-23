@@ -5,13 +5,13 @@ import {
 	extensions,
 	SCALE_MODES,
 } from 'pixi.js'
+import { LDTKLoader } from 'pixi-ldtk-loader'
 
 
 
 
 
 // Local imports
-import { LDTKLoader } from '../pixi-ldtk-loader'
 import { store } from '../store/store.js'
 
 
