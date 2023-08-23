@@ -18,7 +18,7 @@ export function spawnSystem() {
 
 		const { player } = store.state
 
-		if ((spawnType === 'Player') && !player) {
+		if ((spawnType === 'player') && !player) {
 			createPlayerEntity(
 				position.x,
 				position.y,

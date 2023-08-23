@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.3.3",
+		"appVersion": "1.3.4",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "Town",
@@ -257,6 +257,7 @@
 				{ "px": [208,256], "src": [120,96], "f": 0, "t": 927, "d": [2202], "a": 1 },
 				{ "px": [216,256], "src": [120,96], "f": 0, "t": 927, "d": [2203], "a": 1 },
 				{ "px": [224,256], "src": [128,96], "f": 0, "t": 928, "d": [2204], "a": 1 },
+				{ "px": [136,272], "src": [0,0], "f": 0, "t": 0, "d": [2329], "a": 1 },
 				{ "px": [160,272], "src": [0,0], "f": 0, "t": 0, "d": [2332], "a": 1 },
 				{ "px": [160,320], "src": [0,0], "f": 0, "t": 0, "d": [2740], "a": 1 }
 			],
@@ -287,39 +288,43 @@
 			"gridTiles": [],
 			"entityInstances": [
 				{
-					"__identifier": "PlayerSpawner",
+					"__identifier": "playerSpawner",
 					"__grid": [23,42],
 					"__pivot": [0,0],
 					"__tags": ["Actor"],
 					"__tile": { "tilesetUid": 1398, "x": 128, "y": 240, "w": 16, "h": 16 },
 					"__smartColor": "#63C74D",
+					"__worldX": 184,
+					"__worldY": 336,
 					"iid": "8563bda0-1460-11ee-a9ea-4d63bb15ba75",
 					"width": 8,
 					"height": 8,
 					"defUid": 1395,
 					"px": [184,336],
 					"fieldInstances": [
-						{ "__identifier": "EntityType", "__type": "LocalEnum.EntityType", "__value": "Spawn", "__tile": null, "defUid": 1409, "realEditorValues": [null] },
-						{ "__identifier": "SpawnType", "__type": "LocalEnum.SpawnType", "__value": "Player", "__tile": null, "defUid": 1410, "realEditorValues": [null] }
+						{ "__identifier": "entityType", "__type": "ExternEnum.entityType", "__value": "spawn", "__tile": null, "defUid": 1427, "realEditorValues": [] },
+						{ "__identifier": "spawnType", "__type": "ExternEnum.spawnType", "__value": "player", "__tile": null, "defUid": 1428, "realEditorValues": [] }
 					]
 				},
 				{
-					"__identifier": "Door",
+					"__identifier": "door",
 					"__grid": [18,33],
 					"__pivot": [0,0],
 					"__tags": ["Trigger"],
 					"__tile": { "tilesetUid": 1392, "x": 248, "y": 64, "w": 8, "h": 16 },
 					"__smartColor": "#D77643",
+					"__worldX": 144,
+					"__worldY": 264,
 					"iid": "631d9a60-1460-11ee-a9ea-fdbfeb520d51",
 					"width": 8,
 					"height": 16,
 					"defUid": 1399,
 					"px": [144,264],
 					"fieldInstances": [
-						{ "__identifier": "EntityType", "__type": "LocalEnum.EntityType", "__value": "Trigger", "__tile": null, "defUid": 1417, "realEditorValues": [] },
-						{ "__identifier": "TriggerCondition", "__type": "LocalEnum.TriggerCondition", "__value": "OnPlayerEnter", "__tile": null, "defUid": 1419, "realEditorValues": [] },
-						{ "__identifier": "TriggerAction", "__type": "LocalEnum.TriggerAction", "__value": "Teleport", "__tile": null, "defUid": 1421, "realEditorValues": [] },
-						{ "__identifier": "TeleportDestination", "__type": "EntityRef", "__value": {
+						{ "__identifier": "entityType", "__type": "ExternEnum.entityType", "__value": "trigger", "__tile": null, "defUid": 1432, "realEditorValues": [] },
+						{ "__identifier": "triggerCondition", "__type": "ExternEnum.triggerCondition", "__value": "onPlayerEnter", "__tile": null, "defUid": 1433, "realEditorValues": [] },
+						{ "__identifier": "triggerAction", "__type": "ExternEnum.triggerAction", "__value": "teleport", "__tile": null, "defUid": 1434, "realEditorValues": [] },
+						{ "__identifier": "teleportDestination", "__type": "EntityRef", "__value": {
 							"entityIid": "5c129fe0-1460-11ee-a9ea-3b74883f722a",
 							"layerIid": "7adb66c1-1460-11ee-a9ea-cd7316f825f1",
 							"levelIid": "7adb66c0-1460-11ee-a9ea-a1b1c53a613f",
@@ -331,22 +336,24 @@
 					]
 				},
 				{
-					"__identifier": "Door",
+					"__identifier": "door",
 					"__grid": [29,33],
 					"__pivot": [0,0],
 					"__tags": ["Trigger"],
 					"__tile": { "tilesetUid": 1392, "x": 248, "y": 64, "w": 8, "h": 16 },
 					"__smartColor": "#D77643",
+					"__worldX": 232,
+					"__worldY": 264,
 					"iid": "644e7940-1460-11ee-a9ea-1563f9130537",
 					"width": 8,
 					"height": 16,
 					"defUid": 1399,
 					"px": [232,264],
 					"fieldInstances": [
-						{ "__identifier": "EntityType", "__type": "LocalEnum.EntityType", "__value": "Trigger", "__tile": null, "defUid": 1417, "realEditorValues": [] },
-						{ "__identifier": "TriggerCondition", "__type": "LocalEnum.TriggerCondition", "__value": "OnPlayerEnter", "__tile": null, "defUid": 1419, "realEditorValues": [] },
-						{ "__identifier": "TriggerAction", "__type": "LocalEnum.TriggerAction", "__value": "Teleport", "__tile": null, "defUid": 1421, "realEditorValues": [] },
-						{ "__identifier": "TeleportDestination", "__type": "EntityRef", "__value": {
+						{ "__identifier": "entityType", "__type": "ExternEnum.entityType", "__value": "trigger", "__tile": null, "defUid": 1432, "realEditorValues": [] },
+						{ "__identifier": "triggerCondition", "__type": "ExternEnum.triggerCondition", "__value": "onPlayerEnter", "__tile": null, "defUid": 1433, "realEditorValues": [] },
+						{ "__identifier": "triggerAction", "__type": "ExternEnum.triggerAction", "__value": "teleport", "__tile": null, "defUid": 1434, "realEditorValues": [] },
+						{ "__identifier": "teleportDestination", "__type": "EntityRef", "__value": {
 							"entityIid": "692ccfc0-1460-11ee-a9ea-5f980f19de65",
 							"layerIid": "7adb66c1-1460-11ee-a9ea-cd7316f825f1",
 							"levelIid": "7adb66c0-1460-11ee-a9ea-a1b1c53a613f",
@@ -358,60 +365,68 @@
 					]
 				},
 				{
-					"__identifier": "Static",
+					"__identifier": "static",
 					"__grid": [16,24],
 					"__pivot": [0,0],
 					"__tags": ["Collision"],
 					"__tile": null,
 					"__smartColor": "#A22633",
+					"__worldX": 128,
+					"__worldY": 192,
 					"iid": "5369e070-1460-11ee-8a60-2304c0a0f418",
 					"width": 128,
 					"height": 80,
 					"defUid": 1415,
 					"px": [128,192],
-					"fieldInstances": [{ "__identifier": "EntityType", "__type": "LocalEnum.EntityType", "__value": "Collision", "__tile": null, "defUid": 1416, "realEditorValues": [] }]
+					"fieldInstances": [{ "__identifier": "entityType", "__type": "ExternEnum.entityType", "__value": "collision", "__tile": null, "defUid": 1431, "realEditorValues": [] }]
 				},
 				{
-					"__identifier": "Static",
+					"__identifier": "static",
 					"__grid": [16,34],
 					"__pivot": [0,0],
 					"__tags": ["Collision"],
 					"__tile": null,
 					"__smartColor": "#A22633",
+					"__worldX": 128,
+					"__worldY": 272,
 					"iid": "58050c10-1460-11ee-8a60-d7eaf0709ac0",
 					"width": 14,
 					"height": 4,
 					"defUid": 1415,
 					"px": [128,272],
-					"fieldInstances": [{ "__identifier": "EntityType", "__type": "LocalEnum.EntityType", "__value": "Collision", "__tile": null, "defUid": 1416, "realEditorValues": [] }]
+					"fieldInstances": [{ "__identifier": "entityType", "__type": "ExternEnum.entityType", "__value": "collision", "__tile": null, "defUid": 1431, "realEditorValues": [] }]
 				},
 				{
-					"__identifier": "Static",
+					"__identifier": "static",
 					"__grid": [19,34],
 					"__pivot": [0,0],
 					"__tags": ["Collision"],
 					"__tile": null,
 					"__smartColor": "#A22633",
+					"__worldX": 154,
+					"__worldY": 272,
 					"iid": "65cb0c50-1460-11ee-8a60-3d073fff73cb",
 					"width": 76,
 					"height": 4,
 					"defUid": 1415,
 					"px": [154,272],
-					"fieldInstances": [{ "__identifier": "EntityType", "__type": "LocalEnum.EntityType", "__value": "Collision", "__tile": null, "defUid": 1416, "realEditorValues": [] }]
+					"fieldInstances": [{ "__identifier": "entityType", "__type": "ExternEnum.entityType", "__value": "collision", "__tile": null, "defUid": 1431, "realEditorValues": [] }]
 				},
 				{
-					"__identifier": "Static",
+					"__identifier": "static",
 					"__grid": [30,34],
 					"__pivot": [0,0],
 					"__tags": ["Collision"],
 					"__tile": null,
 					"__smartColor": "#A22633",
+					"__worldX": 242,
+					"__worldY": 272,
 					"iid": "7333d160-1460-11ee-8a60-8bcec568693c",
 					"width": 14,
 					"height": 4,
 					"defUid": 1415,
 					"px": [242,272],
-					"fieldInstances": [{ "__identifier": "EntityType", "__type": "LocalEnum.EntityType", "__value": "Collision", "__tile": null, "defUid": 1416, "realEditorValues": [] }]
+					"fieldInstances": [{ "__identifier": "entityType", "__type": "ExternEnum.entityType", "__value": "collision", "__tile": null, "defUid": 1431, "realEditorValues": [] }]
 				}
 			]
 		},

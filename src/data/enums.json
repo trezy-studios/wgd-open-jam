@@ -1,0 +1,22 @@
+{
+	"entityType": [
+		"collision",
+		"spawn",
+		"trigger"
+	],
+	"itemType": [
+		"axe",
+		"sword"
+	],
+	"spawnType": [
+		"goblin",
+		"player"
+	],
+	"triggerAction": [
+		"teleport"
+	],
+	"triggerCondition": [
+		"onPlayerEnter",
+		"onPlayerHit"
+	]
+}

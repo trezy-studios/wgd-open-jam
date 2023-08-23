@@ -32,8 +32,8 @@ export function initialiseEntities() {
 				const layerContainer = viewport.getChildAt(layerIndex)
 
 				layer.entities.forEach(entity => {
-					switch (entity.EntityType) {
-						case 'Collision': {
+					switch (entity.entityType) {
+						case 'collision': {
 							const staticBody = createStaticBody(
 								(entity.position.x) + (entity.width / 2) + level.worldPosition.x,
 								(entity.position.y) + (entity.height / 2) + level.worldPosition.y,
@@ -46,16 +46,16 @@ export function initialiseEntities() {
 							break
 						}
 
-						case 'Spawn':
+						case 'spawn':
 							createSpawnEntity(
 								entity.position.x,
 								entity.position.y,
-								entity.SpawnType,
+								entity.spawnType,
 								layerContainer,
 							)
 							break
 
-						case 'Trigger':
+						case 'trigger':
 							createTriggerEntity(entity, level)
 							break
 
